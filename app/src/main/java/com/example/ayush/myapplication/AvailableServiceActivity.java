@@ -105,7 +105,7 @@ public class AvailableServiceActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
             }
-        }){     // Used for Body Part of Requesting...
+        }){     // Used for Body Part of Requesting....
             @Override
             public String getBodyContentType() {
                 return "application/x-www-form-urlencoded";
