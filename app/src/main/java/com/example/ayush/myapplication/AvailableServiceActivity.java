@@ -43,7 +43,6 @@ public class AvailableServiceActivity extends AppCompatActivity {
 //    String fetchurl = "http://xelwel.com.np/hamrosewa/select.php";
 //    String fetchurl = "http://192.168.0.113/MyApplication/select.php";
 //    String fetchurl = "http://10.0.2.2/MyApplication/select.php";
-//   String fetchurl = "http://172.16.16.33/MyApplication/select.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
