@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.ayush.myapplication.HospitalDetails"
+    tools:showIn="@layout/activity_hospital_details">
+
+    <TextView
+        android:id="@+id/HospitalHead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="Civil Hospital"
+        android:textColor="@color/NavyGreen"
+        android:textSize="35dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/HospitalHead"
+        android:text="New Baneshwor, Kathmandu"
+        android:textColor="@color/NavyGreen"
+        android:textSize="15dp"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/contactno."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/address"
+        android:text="Contact No.:98********"
+        android:textColor="@color/NavyGreen"
+        android:textSize="15dp"
+        android:layout_centerHorizontal="true"/>
+
+
+    <ImageView
+        android:id="@+id/hospitalmap"
+        android:layout_width="300dp"
+        android:layout_height="150dp"
+        android:layout_above="@+id/button"
+        android:layout_centerHorizontal="true"
+        android:src="@mipmap/civilmapview" />
+
+    <ImageView
+        android:id="@+id/location"
+        android:layout_width="30dp"
+        android:layout_height="25dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_place_black_24dp"
+        android:tint="@color/NavyGreen" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/location"
+        android:layout_toRightOf="@+id/location"
+        android:text="View Map"
+        android:textColor="@color/NavyGreen" />
+
+
+
+    <!--<ScrollView-->
+        <!--android:layout_below="@+id/location."-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="338dp"-->
+        <!--android:id="@+id/scrollView2">-->
+
+    <!--</ScrollView>-->
+
+    <ImageView
+        android:id="@+id/HospitalImage"
+        android:layout_width="210dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/scrollView"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:src="@mipmap/civilservicehospital" />
+
+
+    <!--<ProgressBar android:id="@+id/progressBar"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_centerInParent="true"-->
+        <!--android:indeterminateTint="@color/NavyGreen"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content" />-->
+
+</RelativeLayout>

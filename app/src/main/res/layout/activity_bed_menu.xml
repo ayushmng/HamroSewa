@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    tools:context="com.example.ayush.myapplication.BedMenuActivity">
+
+    <TextView
+        android:id="@+id/category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Categories"
+        android:textColor="@color/NavyGreen"
+        android:textSize="25dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="5dp"
+        android:textStyle="bold"/>
+
+    <RadioGroup
+        android:id="@+id/radio"
+        android:layout_below="@+id/category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/icu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="ICU"
+            android:textSize="20dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:padding="10dp"
+            android:textColor="#000"
+            android:buttonTint="@color/NavyGreen"/>
+
+        <RadioButton
+            android:id="@+id/nicu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="NICU"
+            android:textSize="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:padding="10dp"
+            android:textColor="#000"
+            android:buttonTint="@color/NavyGreen"/>
+
+        <RadioButton
+            android:id="@+id/ccu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CCU"
+            android:textSize="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:padding="10dp"
+            android:textColor="#000"
+            android:buttonTint="@color/NavyGreen"/>
+
+    </RadioGroup>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/NavyGreen"
+        android:layout_below="@+id/radio"/>
+
+    <TextView
+        android:id="@+id/HospitalName"
+        android:layout_below="@+id/radio"
+        android:paddingLeft="10dp"
+        android:paddingTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="Hospitals"
+        android:textColor="@color/NavyGreen"
+        android:textSize="20dp"/>
+
+    <TextView
+        android:id="@+id/TotalBed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/HospitalName"
+        android:layout_alignBottom="@+id/HospitalName"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="5dp"
+        android:paddingLeft="20dp"
+        android:text="Total Bed"
+        android:textColor="@color/NavyGreen"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:id="@+id/Vaccant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/TotalBed"
+        android:layout_alignBottom="@+id/TotalBed"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="13dp"
+        android:layout_marginRight="13dp"
+        android:padding="10dp"
+        android:paddingLeft="20dp"
+        android:text="Vaccant"
+        android:textColor="@color/NavyGreen"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <View android:id="@+id/view"
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:background="@color/NavyGreen"
+    android:layout_below="@+id/HospitalName"/>
+
+   <FrameLayout android:id="@+id/container"
+       android:layout_below="@+id/view"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+
+   </FrameLayout>
+
+    <!--<ProgressBar android:id="@+id/progressBar"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_centerInParent="true"-->
+        <!--android:indeterminateTint="@color/NavyGreen"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content" />-->
+
+</RelativeLayout>

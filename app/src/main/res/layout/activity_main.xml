@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/loadingpage"
+    tools:context="com.example.ayush.myapplication.MainActivity">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="30dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="10dp"
+        android:textStyle="italic"
+        android:textColor="@color/NavyGreen"
+        android:shadowColor="@color/NavyGreen"
+        android:textColorHighlight="@color/NavyGreen"
+        android:textColorLink="@color/NavyGreen"
+        android:textSize="55dp"
+        android:text="Hamro Sewa"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="5dp"
+        android:padding="10dp"
+        android:textSize="18dp"
+        android:id="@+id/textView2" />
+        <!--android:text="Powered By: Xelwel Innovation"-->
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView2"
+        android:indeterminateTint="@color/NavyGreen"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp" />
+
+
+</RelativeLayout>
