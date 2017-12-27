@@ -26,7 +26,7 @@ public class NobelJSONActivity extends AppCompatActivity {
     AQuery aQuery;
 
 //    String fetchurl = "http://192.168.0.107/MyApplication/select.php";
-    //    String fetchurl = "http://172.16.16.33/MyApplication/select.php";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -41,7 +41,6 @@ public class AvailableServiceActivity extends AppCompatActivity {
     RequestQueue requestQueue;
 
 //    String fetchurl = "http://xelwel.com.np/hamrosewa/select.php";
-//    String fetchurl = "http://192.168.0.113/MyApplication/select.php";
 //    String fetchurl = "http://10.0.2.2/MyApplication/select.php";
 
     @Override
