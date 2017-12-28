@@ -6,6 +6,7 @@
     <color name="Blue">#6eafef</color>
     <color name="colorAccent">#faf9f9</color>
     <color name="LightGrey">#f8faf9</color>
+    <color name="LightGrey2">#e7e9e8</color>
     <color name="Grey">#989998</color>
     <color name="NavyGreen">#244c70</color>
 </resources>

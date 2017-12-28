@@ -34,7 +34,7 @@ public class ServiceMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ServiceMenuActivity.this, AvailableServiceActivity.class);
-                intent.putExtra("fetch_url", "http://xelwel.com.np/hamrosewaapp/api/get_organization_list");
+                intent.putExtra("fetch_url", "http://xelwel.com.np/hamrosewaapp/api/get_organization_list/1");
                 startActivity(intent);
             }
         });
@@ -43,8 +43,8 @@ public class ServiceMenuActivity extends AppCompatActivity {
         linearLayout_B.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ServiceMenuActivity.this, NobelJSONActivity.class);
-                intent.putExtra("fetch_url", "http://xelwel.com.np/hamrosewa/select.php");
+                Intent intent = new Intent(ServiceMenuActivity.this, AvailableServiceActivity.class);
+                intent.putExtra("fetch_url", "http://xelwel.com.np/hamrosewaapp/api/get_organization_list/2");
 //                intent.putExtra("fetch_url", "http://192.168.0.3/hamrosewaapp/api/get_organization_list/2");
                 startActivity(intent);
             }

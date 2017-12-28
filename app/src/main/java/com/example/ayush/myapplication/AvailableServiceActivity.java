@@ -1,36 +1,24 @@
 package com.example.ayush.myapplication;
 
-import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Base64;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
-import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.androidquery.AQuery;
-import com.androidquery.callback.AjaxCallback;
-import com.androidquery.callback.AjaxStatus;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -40,7 +28,7 @@ public class AvailableServiceActivity extends AppCompatActivity {
     ProgressBar progressbar;
     RequestQueue requestQueue;
 
-//    String fetchurl = "http://xelwel.com.np/hamrosewa/select.php";
+//    String orgListUrl = "http://xelwel.com.np/hamrosewaapp/api/get_organization_list";
 //    String fetchurl = "http://10.0.2.2/MyApplication/select.php";
 
     @Override
@@ -68,13 +56,14 @@ public class AvailableServiceActivity extends AppCompatActivity {
 
         String fetchurl = getIntent().getStringExtra("fetch_url");
 
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, fetchurl, null, new Response.Listener<JSONObject>() {
+        final StringRequest request = new StringRequest(Request.Method.POST, fetchurl, new Response.Listener<String>() {
             @Override
-            public void onResponse(JSONObject response) {
+            public void onResponse(String response) {
 
                 try {
+                    JSONObject jsonObject = new JSONObject(response);
 
-                    JSONArray jsonArray = response.getJSONArray("org_list");
+                    JSONArray jsonArray = jsonObject.getJSONArray("org_list");
 
                     for (int i = 0; i < jsonArray.length(); i++) {
 
@@ -103,35 +92,14 @@ public class AvailableServiceActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
             }
-        }){     // Used for Body Part of Requesting...
+        }){
             @Override
-            public String getBodyContentType() {
-                return "application/x-www-form-urlencoded";
-            }
-
-            @Override
-            public byte[] getBody() {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("api_key","123456789" );
-                return super.getBody();
-            }
-
-            //            @Override
-//            public Map<String, String> getBody() throws AuthFailureError {
-//                Map<String, String> params = new HashMap<String, String>();
-//                params.put("api_key","123456789" );
-//                params.put("Content-Type", "application/x-www-form-urlencoded");
-//                return params;
-//            }
-
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("api_key","123456789" );
-                params.put("Content-Type", "application/x-www-form-urlencoded");
-                return params;
-            }
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("api_key", "123456789");
+                return params;            }
         };
+
         requestQueue.add(request);
     }
 

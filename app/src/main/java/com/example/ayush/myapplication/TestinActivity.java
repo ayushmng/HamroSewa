@@ -12,10 +12,13 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
 
 public class TestinActivity extends AppCompatActivity {
 
@@ -41,7 +44,7 @@ public class TestinActivity extends AppCompatActivity {
     }
     public void jsonParse(){
 
-        String fetchurl = "http://xelwel.com.np/hamrosewaapp/api/get_organization_list";
+        final String fetchurl = "http://xelwel.com.np/hamrosewaapp/api/get_organization_list";
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, fetchurl, null, new Response.Listener<JSONObject>() {
             @Override
