@@ -10,6 +10,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
+
+import static com.example.ayush.myapplication.ServiceActivity.ServiceMenu.EXTRA_CREATOR;
+import static com.example.ayush.myapplication.ServiceActivity.ServiceMenu.EXTRA_URL;
 
 public class HospitalDetails extends AppCompatActivity {
 
@@ -20,11 +27,25 @@ public class HospitalDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hospital_details);
 
+//-----------------------------  Calling Intent starts from here  ----------------------------------------------------------//
+
+//        Intent intent = getIntent();
+//        String imageUrl = intent.getStringExtra(EXTRA_URL);
+//        String name = intent.getStringExtra(EXTRA_CREATOR);
+//
+//        ImageView imageView = findViewById(R.id.HospitalImage);
+//        TextView textView = findViewById(R.id.HospitalHead);
+//
+//        Picasso.with(this).load(imageUrl).fit().centerInside().into(imageView);
+//        textView.setText(name);
+
+//-----------------------------  Upto here is getting intent from another page  ---------------------------------------------//
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); // Yo case ma toolbar lae yaha define gareko xa because mathi getSupportActionBar garda yeslae get garne vo but yaha setActionBar vaner define gareko xa. So mathi get garda pahila yaha tala ko set function lae call garna khojda error aux.
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

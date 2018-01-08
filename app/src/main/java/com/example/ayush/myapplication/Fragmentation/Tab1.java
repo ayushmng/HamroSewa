@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.ayush.myapplication.BedMenuActivity;
 import com.example.ayush.myapplication.R;
+import com.example.ayush.myapplication.ServiceActivity.ServiceMenu;
 import com.example.ayush.myapplication.ServiceMenuActivity;
 
 
@@ -96,7 +97,7 @@ public class Tab1 extends Fragment {
         serviceview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), ServiceMenuActivity.class);
+                Intent intent = new Intent(getActivity(), ServiceMenu.class);
                 startActivity(intent);
             }
         });

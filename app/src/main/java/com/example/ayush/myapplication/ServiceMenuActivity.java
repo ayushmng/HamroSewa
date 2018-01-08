@@ -26,6 +26,7 @@ public class ServiceMenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service_menu);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle("Services");
 
@@ -34,7 +35,7 @@ public class ServiceMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ServiceMenuActivity.this, AvailableServiceActivity.class);
-                intent.putExtra("fetch_url", "http://xelwel.com.np/hamrosewaapp/api/get_organization_list/1");
+                intent.putExtra("fetch_url", "https://xelwel.com.np/hamrosewaapp/api/get_organization_list/1");
                 startActivity(intent);
             }
         });
@@ -44,7 +45,7 @@ public class ServiceMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ServiceMenuActivity.this, AvailableServiceActivity.class);
-                intent.putExtra("fetch_url", "http://xelwel.com.np/hamrosewaapp/api/get_organization_list/2");
+                intent.putExtra("fetch_url", "https://xelwel.com.np/hamrosewaapp/api/get_organization_list/2");
 //                intent.putExtra("fetch_url", "http://192.168.0.3/hamrosewaapp/api/get_organization_list/2");
                 startActivity(intent);
             }
@@ -55,7 +56,7 @@ public class ServiceMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ServiceMenuActivity.this, AvailableServiceActivity.class);
-                intent.putExtra("fetch_url", "http://192.168.0.3/hamrosewaapp/api/get_organization_list/2");
+                intent.putExtra("fetch_url", "http://xelwel.com.np/hamrosewa/select.php");
                 startActivity(intent);
             }
         });
