@@ -1,4 +1,4 @@
-package com.example.ayush.myapplication;
+package com.example.ayush.myapplication.ServiceActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +15,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.ayush.myapplication.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;

@@ -8,14 +8,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.example.ayush.myapplication.BedMenuActivity;
 import com.example.ayush.myapplication.R;
 import com.example.ayush.myapplication.ServiceActivity.ServiceMenu;
-import com.example.ayush.myapplication.ServiceMenuActivity;
 
 
 /**

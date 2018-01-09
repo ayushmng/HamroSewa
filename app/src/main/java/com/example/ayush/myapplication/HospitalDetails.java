@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -54,27 +55,27 @@ public class HospitalDetails extends AppCompatActivity {
                 String phone = "tel:"+"9842420134";
                 intent.setData(Uri.parse(phone));
                 startActivity(intent);
-//                Snackbar.make(view, "Call in progress...", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
+                Snackbar.make(view, "Call in progress...", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
             }
         });
 
-//        button = findViewById(R.id.mapbutton);
-//        button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                new Handler().postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        Uri gmmIntentUri = Uri.parse("geo:19.076,72.8777");
-//                        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-//                        mapIntent.setPackage("com.google.android.apps.maps");
-//                        startActivity(mapIntent);
-//                    }
-//                }, 1000);
-//            }
-//        });
+        button = findViewById(R.id.mapbutton);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Uri gmmIntentUri = Uri.parse("geo:<27.686453>,<85.338816>?q=<27.686453>,<85.338816>(Civil Service Hospital of Nepal)");
+                        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                        mapIntent.setPackage("com.google.android.apps.maps");
+                        startActivity(mapIntent);
+                    }
+                }, 1000);
+            }
+        });
     }
 
 //    public void process(View view) {
