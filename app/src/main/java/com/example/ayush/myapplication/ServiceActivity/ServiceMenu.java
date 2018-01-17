@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
@@ -12,7 +13,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -170,6 +170,16 @@ public class ServiceMenu extends AppCompatActivity implements ExampleAdapter.OnI
 
 //------------------------------------------ Searching ---------------------------------------------------------------//
 
+//        @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        MenuInflater inflater = getMenuInflater();
+//        inflater.inflate(R.menu.menu, menu);
+//
+//        MenuItem searchItem = menu.findItem(R.id.item_search);
+//        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+//        return true;
+//    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -177,9 +187,9 @@ public class ServiceMenu extends AppCompatActivity implements ExampleAdapter.OnI
         inflater.inflate(R.menu.menu, menu);
 
         final MenuItem searchItem = menu.findItem(R.id.item_search);
-        searchView = (SearchView) searchItem.getActionView();
+//        searchView = (SearchView) searchItem.getActionView();
 
-//        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
         {
             @Override
@@ -197,6 +207,7 @@ public class ServiceMenu extends AppCompatActivity implements ExampleAdapter.OnI
                 return false;
             }
         });
+
 
         return true;
     }

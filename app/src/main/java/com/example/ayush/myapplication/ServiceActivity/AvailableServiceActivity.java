@@ -2,7 +2,9 @@ package com.example.ayush.myapplication.ServiceActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -99,14 +101,13 @@ public class AvailableServiceActivity extends AppCompatActivity {
 
     public void jsonParse() {
 
-       //        String fetchurl = getIntent().getStringExtra("fetch_url");
+        //        String fetchurl = getIntent().getStringExtra("fetch_url");
 
-       final String fetchurl = ("https://xelwel.com.np/hamrosewaapp/api/get_organization_list");
+        final String fetchurl = ("https://xelwel.com.np/hamrosewaapp/api/get_organization_list");
 
         final StringRequest request = new StringRequest(Request.Method.POST, fetchurl, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-
 
 
                 try {
@@ -149,12 +150,13 @@ public class AvailableServiceActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
             }
-        }){
+        }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("api_key", "123456789");
-                return params;            }
+                return params;
+            }
         };
 
         requestQueue.add(request);
@@ -173,15 +175,15 @@ public class AvailableServiceActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }//--------------------------------- Back Button Process Ends Here -----------------------------------------//
-}
 
+}
     // -------------------------------------------- Search code starts from here -------------------------------------------------//
 
 //    @Override
 //    public boolean onCreateOptionsMenu(Menu menu) {
 //        MenuInflater inflater = getMenuInflater();
 //        inflater.inflate(R.menu.menu, menu);
-
+//
 //        MenuItem searchItem = menu.findItem(R.id.item_search);
 //        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
 //        return super.onCreateOptionsMenu(menu);
