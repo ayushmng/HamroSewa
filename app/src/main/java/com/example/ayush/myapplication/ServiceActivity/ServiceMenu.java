@@ -2,13 +2,17 @@ package com.example.ayush.myapplication.ServiceActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -39,6 +43,8 @@ public class ServiceMenu extends AppCompatActivity implements ExampleAdapter.OnI
     private RequestQueue mRequestQueue;
     private GridLayoutManager gridLayoutManager;
 
+    public SearchView searchView;
+
     ProgressBar progressbar;
 
     @Override
@@ -51,8 +57,8 @@ public class ServiceMenu extends AppCompatActivity implements ExampleAdapter.OnI
 
         progressbar = findViewById(R.id.progressBar);
         progressbar.setVisibility(View.VISIBLE);
-        gridLayoutManager = new GridLayoutManager(this, 2);
 
+        gridLayoutManager = new GridLayoutManager(this, 2);
         mRecyclerView = findViewById(R.id.recycler_view);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(gridLayoutManager);
@@ -146,7 +152,6 @@ public class ServiceMenu extends AppCompatActivity implements ExampleAdapter.OnI
         detailIntent.putExtra(EXTRA_URL, clickedItem.getImageUrl());
         detailIntent.putExtra(EXTRA_CREATOR, clickedItem.getCreator());
 
-
         startActivity(detailIntent);
     }
 
@@ -161,6 +166,52 @@ public class ServiceMenu extends AppCompatActivity implements ExampleAdapter.OnI
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+//------------------------------------------ Searching ---------------------------------------------------------------//
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+
+        final MenuItem searchItem = menu.findItem(R.id.item_search);
+        searchView = (SearchView) searchItem.getActionView();
+
+//        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
+        {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+
+                if (!searchView.isIconified()){
+                    searchView.setIconified(true);
+                }
+                searchItem.collapseActionView();
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                return false;
+            }
+        });
+
+        return true;
+    }
+    private ArrayList<UserInfo> filter(ArrayList<UserInfo> p1, String query){
+
+        query = query.toLowerCase();
+        final ArrayList<UserInfo> filterModeList = new ArrayList<>();
+        for (UserInfo model: p1){
+
+            final String text = model.getCreator().toLowerCase();
+            if (text.startsWith(query)){
+                filterModeList.add(model);
+            }
+        }
+        return filterModeList;
     }
 }
 

@@ -3,8 +3,13 @@ package com.example.ayush.myapplication.ServiceActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.GridView;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -21,16 +26,25 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static com.example.ayush.myapplication.ServiceActivity.ServiceMenu.EXTRA_CREATOR;
 
 public class AvailableServiceActivity extends AppCompatActivity {
 
+    public static final String TAG_ID = "orga_orgid";
+    public static final String TAG_NAME = "orga_organame";
+
     TextView textView1, textView2, textView3;
     ProgressBar progressbar;
     RequestQueue requestQueue;
+
+//    ListView list;
+//    public CustomGridAdapter adapter;
+//    GridView grid;
 
 //    String orgListUrl = "https://xelwel.com.np/hamrosewaapp/api/get_organization_list";
 //    String fetchurl = "http://10.0.2.2/MyApplication/select.php";
@@ -42,6 +56,23 @@ public class AvailableServiceActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle("Available Services");
+
+// ------------------------------------------  For searching item ---------------------------------------------------------//
+
+//        list = findViewById(R.id.list_item);
+//        adapter = new CustomGridAdapter(this);
+//        list.setAdapter(adapter);
+
+//        listView.setTextFilterEnabled(true);
+//
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                String text = listView.getItemAtPosition(position).toString();
+//                Toast.makeText(AvailableServiceActivity.this,"" +text, Toast.LENGTH_LONG);
+//            }
+//        });
+// ----------------------------------------  Searching view ends here ----------------------------------------------------//
 
         Intent intent = getIntent();
 
@@ -59,25 +90,30 @@ public class AvailableServiceActivity extends AppCompatActivity {
         textView2 = findViewById(R.id.ServiceName1);
         textView3 = findViewById(R.id.Amount1);
 
+//        grid = findViewById(R.id.grid_view);
+
         requestQueue = Volley.newRequestQueue(this);
 
         jsonParse();
     }
 
-
     public void jsonParse() {
 
-//        String fetchurl = getIntent().getStringExtra("fetch_url");
+       //        String fetchurl = getIntent().getStringExtra("fetch_url");
+
        final String fetchurl = ("https://xelwel.com.np/hamrosewaapp/api/get_organization_list");
 
         final StringRequest request = new StringRequest(Request.Method.POST, fetchurl, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
+
+
                 try {
                     JSONObject jsonObject = new JSONObject(response);
 
                     JSONArray jsonArray = jsonObject.getJSONArray("org_list");
+
 
                     for (int i = 0; i < jsonArray.length(); i++) {
 
@@ -91,7 +127,12 @@ public class AvailableServiceActivity extends AppCompatActivity {
 
                         progressbar.setVisibility(View.GONE);
 
+
+//                        UserInfo adapter = new UserInfo(getActivity(), Id, Name);
+//                        grid.setAdapter(new UserInfo(this));
+
                     }
+
 //                        String Amount = patient.getString("orga_organame");
 //                        textView3.append(Amount+" "+"\n\n");
 
@@ -100,7 +141,9 @@ public class AvailableServiceActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
             }
+
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
@@ -117,7 +160,7 @@ public class AvailableServiceActivity extends AppCompatActivity {
         requestQueue.add(request);
     }
 
-    //--------------------------------- For Back Button To Go On Back Process-----------------------------------------//
+    //--------------------------------- For Back Button To Go On Back Process -----------------------------------------//
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -129,5 +172,45 @@ public class AvailableServiceActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
+    }//--------------------------------- Back Button Process Ends Here -----------------------------------------//
 }
+
+    // -------------------------------------------- Search code starts from here -------------------------------------------------//
+
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        MenuInflater inflater = getMenuInflater();
+//        inflater.inflate(R.menu.menu, menu);
+
+//        MenuItem searchItem = menu.findItem(R.id.item_search);
+//        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+//        return super.onCreateOptionsMenu(menu);
+//    }
+//
+//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String s) {
+//                ArrayList<String> templist = new ArrayList<>();
+//
+//                for (String temp : items ){
+//                    if (temp.toLowerCase().contains(s.toLowerCase())){
+//                        templist.add(temp);
+//                    }
+//                }
+//                ArrayAdapter<String> adapter = new ArrayAdapter<>(AvailableServiceActivity.this,android.R.layout.simple_dropdown_item_1line, templist);
+//                listView.setAdapter(adapter);
+//
+//                return true;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String s) {
+//                return false;
+//            }
+//        });
+//
+//        return super.onCreateOptionsMenu(menu);
+//    }
+
+//------------------------------------------  Searching part ends here  ---------------------------------------------------//
+

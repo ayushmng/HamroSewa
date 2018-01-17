@@ -64,6 +64,13 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ViewHold
         return mExampleList.size();
     }
 
+    public void setfilter(ArrayList<UserInfo> listitem){
+
+        mExampleList = new ArrayList<>();
+        mExampleList.addAll(listitem);
+        notifyDataSetChanged();
+
+    }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
