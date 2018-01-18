@@ -65,9 +65,9 @@ public class AvailableServiceActivity extends AppCompatActivity {
 //        adapter = new CustomGridAdapter(this);
 //        list.setAdapter(adapter);
 
-//        listView.setTextFilterEnabled(true);
+//        list.setTextFilterEnabled(true);
 //
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //            @Override
 //            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 //                String text = listView.getItemAtPosition(position).toString();
@@ -177,42 +177,3 @@ public class AvailableServiceActivity extends AppCompatActivity {
     }//--------------------------------- Back Button Process Ends Here -----------------------------------------//
 
 }
-    // -------------------------------------------- Search code starts from here -------------------------------------------------//
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        MenuInflater inflater = getMenuInflater();
-//        inflater.inflate(R.menu.menu, menu);
-//
-//        MenuItem searchItem = menu.findItem(R.id.item_search);
-//        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
-//        return super.onCreateOptionsMenu(menu);
-//    }
-//
-//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String s) {
-//                ArrayList<String> templist = new ArrayList<>();
-//
-//                for (String temp : items ){
-//                    if (temp.toLowerCase().contains(s.toLowerCase())){
-//                        templist.add(temp);
-//                    }
-//                }
-//                ArrayAdapter<String> adapter = new ArrayAdapter<>(AvailableServiceActivity.this,android.R.layout.simple_dropdown_item_1line, templist);
-//                listView.setAdapter(adapter);
-//
-//                return true;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String s) {
-//                return false;
-//            }
-//        });
-//
-//        return super.onCreateOptionsMenu(menu);
-//    }
-
-//------------------------------------------  Searching part ends here  ---------------------------------------------------//
-

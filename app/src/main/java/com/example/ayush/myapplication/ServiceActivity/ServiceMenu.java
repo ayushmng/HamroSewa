@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -12,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -30,21 +32,22 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-public class ServiceMenu extends AppCompatActivity implements ExampleAdapter.OnItemClickListener {
+public class ServiceMenu extends AppCompatActivity implements ExampleAdapter.OnItemClickListener, SearchView.OnQueryTextListener {
 
     public static final String EXTRA_CREATOR = "creatorName"; // tala ko data ma vayeko url ko object banako ko obj name haleko ho
     public static final String EXTRA_URL = "imageUrl";
 
     private RecyclerView mRecyclerView;
     private ExampleAdapter mExampleAdapter;
-    private ArrayList<UserInfo> mExampleList;
     private RequestQueue mRequestQueue;
     private GridLayoutManager gridLayoutManager;
 
-    public SearchView searchView;
+//    private ArrayList<UserInfo> mExampleList;
 
+    List<UserInfo> mExampleList = new ArrayList<>();
     ProgressBar progressbar;
 
     @Override
@@ -58,10 +61,14 @@ public class ServiceMenu extends AppCompatActivity implements ExampleAdapter.OnI
         progressbar = findViewById(R.id.progressBar);
         progressbar.setVisibility(View.VISIBLE);
 
+
         gridLayoutManager = new GridLayoutManager(this, 2);
         mRecyclerView = findViewById(R.id.recycler_view);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(gridLayoutManager);
+
+//  mRecyclerView.setLayoutManager(new LinearLayoutManager(this));  // It changes the dataitem into list view than that of grid view when we remove gridview 2lines from above ....
+
 
         mExampleList = new ArrayList<>();
 
@@ -80,7 +87,7 @@ public class ServiceMenu extends AppCompatActivity implements ExampleAdapter.OnI
                     @Override
                     public void onResponse(String response) {
 
-                        Log.i("response", url + "response:" +response);
+                        Log.i("response", url + "response:" + response);
 
                         try {
 
@@ -168,17 +175,7 @@ public class ServiceMenu extends AppCompatActivity implements ExampleAdapter.OnI
         }
     }
 
-//------------------------------------------ Searching ---------------------------------------------------------------//
-
-//        @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        MenuInflater inflater = getMenuInflater();
-//        inflater.inflate(R.menu.menu, menu);
-//
-//        MenuItem searchItem = menu.findItem(R.id.item_search);
-//        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
-//        return true;
-//    }
+//------------------------------------------ Searching System ---------------------------------------------------------------//
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -187,42 +184,60 @@ public class ServiceMenu extends AppCompatActivity implements ExampleAdapter.OnI
         inflater.inflate(R.menu.menu, menu);
 
         final MenuItem searchItem = menu.findItem(R.id.item_search);
-//        searchView = (SearchView) searchItem.getActionView();
-
         final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
-        {
-            @Override
-            public boolean onQueryTextSubmit(String s) {
 
-                if (!searchView.isIconified()){
-                    searchView.setIconified(true);
-                }
-                searchItem.collapseActionView();
-                return false;
-            }
+        searchView.setOnQueryTextListener(this);
 
-            @Override
-            public boolean onQueryTextChange(String s) {
-                return false;
-            }
-        });
+        MenuItemCompat.setOnActionExpandListener(searchItem,
+                new MenuItemCompat.OnActionExpandListener() {
+                    @Override
+                    public boolean onMenuItemActionCollapse(MenuItem item) {
 
+                        //--------  Do something when collapsed  -----------//
 
+                        mExampleAdapter.setFilter(mExampleList);
+                        return true; // Return true to collapse action view
+                    }
+
+                    @Override
+                    public boolean onMenuItemActionExpand(MenuItem item) {
+
+                        //--------  Do something when expanded  --------------//
+
+                        return true; // Return true to expand action view
+                    }
+                });
+
+        return true; // Returning true to onCreate Option Menu
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        final List<UserInfo> filteredModelList = filter(mExampleList, newText);
+
+        mExampleAdapter.setFilter(filteredModelList); // This setFilter is called from Example Adapter Class
         return true;
     }
-    private ArrayList<UserInfo> filter(ArrayList<UserInfo> p1, String query){
 
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    private List<UserInfo> filter(List<UserInfo> models, String query) {
         query = query.toLowerCase();
-        final ArrayList<UserInfo> filterModeList = new ArrayList<>();
-        for (UserInfo model: p1){
 
+        final List<UserInfo> filteredModelList = new ArrayList<>();
+        for (UserInfo model : models) {
             final String text = model.getCreator().toLowerCase();
-            if (text.startsWith(query)){
-                filterModeList.add(model);
+            if (text.contains(query)) {
+                filteredModelList.add(model);
             }
         }
-        return filterModeList;
+        return filteredModelList;
     }
+
+//---------------------------  Search stops from here  ----------------------------------------//
+
 }
 

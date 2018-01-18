@@ -11,8 +11,8 @@ public class UserInfo {
 
 
     public UserInfo(String imageUrl, String creator) {
-        mImageUrl = imageUrl;
-        mCreator = creator;
+        this.mImageUrl = imageUrl;
+        this.mCreator = creator;
 
     }
 

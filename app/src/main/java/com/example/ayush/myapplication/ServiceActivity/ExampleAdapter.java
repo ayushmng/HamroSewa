@@ -12,6 +12,7 @@ import com.example.ayush.myapplication.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Ayush on 12/31/2017.
@@ -20,7 +21,7 @@ import java.util.ArrayList;
 public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ViewHolder> {
 
     private Context mcontext;
-    private ArrayList<UserInfo> mExampleList;
+    private List<UserInfo> mExampleList;
     private OnItemClickListener mListener;
 
     public interface OnItemClickListener {
@@ -31,10 +32,10 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ViewHold
         mListener = listener;
     }
 
-    public ExampleAdapter(Context context, ArrayList<UserInfo> list) {
+    public ExampleAdapter(Context context, List<UserInfo> list) {
 
-        mcontext = context;
-        mExampleList = list;
+        this.mcontext = context;
+        this.mExampleList = list;
     }
 
     @Override
@@ -64,7 +65,7 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ViewHold
         return mExampleList.size();
     }
 
-    public void setfilter(ArrayList<UserInfo> listitem){
+    public void setFilter(List<UserInfo> listitem){
 
         mExampleList = new ArrayList<>();
         mExampleList.addAll(listitem);
