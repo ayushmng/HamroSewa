@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,7 +27,7 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ViewHold
     private OnItemClickListener mListener;
 
     public interface OnItemClickListener {
-        void onItemClick(int position);
+        void onItemClick(UserInfo userInfo);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
@@ -48,7 +49,7 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
 
         UserInfo info = mExampleList.get(position);
 
@@ -58,6 +59,16 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ViewHold
         holder.textView.setText(hsname);
         Picasso.with(mcontext).load(image).fit().centerInside().into(holder.imageView);
 //        Glide.with(mcontext).load(image).into(holder.imageView);
+        holder.rootView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UserInfo userInfo = mExampleList.get(position);
+
+                mListener.onItemClick(userInfo);
+
+            }
+        });
+
 
     }
 
@@ -67,37 +78,25 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ViewHold
         return mExampleList.size();
     }
 
-    public void setFilter(List<UserInfo> listitem) {
-
+    void setFilter(List<UserInfo> listitem) {
         mExampleList = new ArrayList<>();
         mExampleList.addAll(listitem);
         notifyDataSetChanged();
 
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView textView;
-        public ImageView imageView;
+        private final TextView textView;
+        private final ImageView imageView;
+        private final LinearLayout rootView;
 
-        public ViewHolder(View itemView) {
+        ViewHolder(View itemView) {
             super(itemView);
 
             textView = itemView.findViewById(R.id.text_view_creator);
             imageView = itemView.findViewById(R.id.image_view);
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    if (mListener != null) {
-                        int position = getAdapterPosition();
-                        if (position != RecyclerView.NO_POSITION) {
-                            mListener.onItemClick(position);
-                        }
-                    }
-                }
-            });
+            rootView = itemView.findViewById(R.id.rootView);
         }
     }
 }

@@ -47,7 +47,7 @@ public class ServiceMenu extends AppCompatActivity implements ExampleAdapter.OnI
 
 //    private ArrayList<UserInfo> mExampleList;
 
-    List<UserInfo> mExampleList = new ArrayList<>();
+    private List<UserInfo> mExampleList = new ArrayList<>();
     ProgressBar progressbar;
 
     @Override
@@ -70,7 +70,7 @@ public class ServiceMenu extends AppCompatActivity implements ExampleAdapter.OnI
 //  mRecyclerView.setLayoutManager(new LinearLayoutManager(this));  // It changes the dataitem into list view than that of grid view when we remove gridview 2lines from above ....
 
 
-        mExampleList = new ArrayList<>();
+//        mExampleList = new ArrayList<>();
 
         mRequestQueue = Volley.newRequestQueue(this);
 
@@ -152,13 +152,13 @@ public class ServiceMenu extends AppCompatActivity implements ExampleAdapter.OnI
     }
 
     @Override
-    public void onItemClick(int position) {
+    public void onItemClick(UserInfo userInfo) {
 
         Intent detailIntent = new Intent(this, AvailableServiceActivity.class);
-        UserInfo clickedItem = mExampleList.get(position);
-
-        detailIntent.putExtra(EXTRA_URL, clickedItem.getImageUrl());
-        detailIntent.putExtra(EXTRA_CREATOR, clickedItem.getCreator());
+//
+//        detailIntent.putExtra(EXTRA_URL, clickedItem.getImageUrl());
+//        detailIntent.putExtra(EXTRA_CREATOR, clickedItem.getCreator());
+        detailIntent.putExtra("userInfo", userInfo);
 
         startActivity(detailIntent);
     }

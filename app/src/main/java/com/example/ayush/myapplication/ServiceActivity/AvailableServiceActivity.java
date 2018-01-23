@@ -60,13 +60,12 @@ public class AvailableServiceActivity extends AppCompatActivity {
         setTitle("Available Services");
 
 //----------------------  For making top Hospital Name dynamic ---------------------//
-        Intent intent = getIntent();
+        UserInfo userInfo = (UserInfo) getIntent().getSerializableExtra("userInfo");
 
-        String name = intent.getStringExtra(EXTRA_CREATOR);
+//        String name = intent.getStringExtra(EXTRA_CREATOR);
 
         TextView textView = findViewById(R.id.Textview);
-
-        textView.setText(name);
+        textView.setText(userInfo.getCreator());
 
 //------------------------------  Ends here -------------------------------------------//
 
@@ -112,7 +111,7 @@ public class AvailableServiceActivity extends AppCompatActivity {
 
                         String Id = patient.getString("orga_orgid");
                         String Name = patient.getString("orga_organame");
-                       // String Amount = patient.getString("");
+                        // String Amount = patient.getString("");
                         list.add(new UserInfo2(Id, Name));
 
                         adapter = new AvailableServiceAdapter(AvailableServiceActivity.this, list);
