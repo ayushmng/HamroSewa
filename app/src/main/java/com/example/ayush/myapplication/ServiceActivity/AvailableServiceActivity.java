@@ -44,9 +44,9 @@ public class AvailableServiceActivity extends AppCompatActivity {
     ProgressBar progressbar;
     RequestQueue requestQueue;
 
-//    ListView list;
-//    public CustomGridAdapter adapter;
-//    GridView grid;
+    private List<UserInfo2> list = new ArrayList<UserInfo2>();
+    private ListView listView;
+    private AvailableServiceAdapter adapter;
 
 //    String orgListUrl = "https://xelwel.com.np/hamrosewaapp/api/get_organization_list";
 //    String fetchurl = "http://10.0.2.2/MyApplication/select.php";
@@ -59,23 +59,7 @@ public class AvailableServiceActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle("Available Services");
 
-// ------------------------------------------  For searching item ---------------------------------------------------------//
-
-//        list = findViewById(R.id.list_item);
-//        adapter = new CustomGridAdapter(this);
-//        list.setAdapter(adapter);
-
-//        list.setTextFilterEnabled(true);
-//
-//        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                String text = listView.getItemAtPosition(position).toString();
-//                Toast.makeText(AvailableServiceActivity.this,"" +text, Toast.LENGTH_LONG);
-//            }
-//        });
-// ----------------------------------------  Searching view ends here ----------------------------------------------------//
-
+//----------------------  For making top Hospital Name dynamic ---------------------//
         Intent intent = getIntent();
 
         String name = intent.getStringExtra(EXTRA_CREATOR);
@@ -84,6 +68,9 @@ public class AvailableServiceActivity extends AppCompatActivity {
 
         textView.setText(name);
 
+//------------------------------  Ends here -------------------------------------------//
+
+        listView = findViewById(R.id.list_view);
 
         progressbar = findViewById(R.id.progressBar);
         progressbar.setVisibility(View.VISIBLE);
@@ -92,11 +79,10 @@ public class AvailableServiceActivity extends AppCompatActivity {
         textView2 = findViewById(R.id.ServiceName1);
         textView3 = findViewById(R.id.Amount1);
 
-//        grid = findViewById(R.id.grid_view);
-
         requestQueue = Volley.newRequestQueue(this);
 
         jsonParse();
+
     }
 
     public void jsonParse() {
@@ -109,35 +95,34 @@ public class AvailableServiceActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
 
-
                 try {
                     JSONObject jsonObject = new JSONObject(response);
 
                     JSONArray jsonArray = jsonObject.getJSONArray("org_list");
 
+//                    UserInfo2 info = new UserInfo2();
 
                     for (int i = 0; i < jsonArray.length(); i++) {
 
                         JSONObject patient = jsonArray.getJSONObject(i);
 
-                        String Id = patient.getString("orga_orgid");
-                        textView1.append(Id + "." + "\n\n");
+//                        info.setId(patient.getString("orga_orgid"));
+//                        info.setName(patient.getString("orga_organame"));
+//                        list.add(info);
 
+                        String Id = patient.getString("orga_orgid");
                         String Name = patient.getString("orga_organame");
-                        textView2.append(Name + " " + "\n\n");
+                       // String Amount = patient.getString("");
+                        list.add(new UserInfo2(Id, Name));
+
+                        adapter = new AvailableServiceAdapter(AvailableServiceActivity.this, list);
+                        listView.setAdapter(adapter);
+
+//                        textView1.append(Id + "." + "\n\n");
+//                        textView2.append(Name + " " + "\n\n");
 
                         progressbar.setVisibility(View.GONE);
-
-
-//                        UserInfo adapter = new UserInfo(getActivity(), Id, Name);
-//                        grid.setAdapter(new UserInfo(this));
-
                     }
-
-//                        String Amount = patient.getString("orga_organame");
-//                        textView3.append(Amount+" "+"\n\n");
-
-//                        textView.append(firstName+","+String.valueOf(age)+","+mail+"\n\n");
 
                 } catch (JSONException e) {
                     e.printStackTrace();

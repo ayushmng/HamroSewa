@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ayush.myapplication.R;
 import com.squareup.picasso.Picasso;
@@ -29,6 +30,7 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ViewHold
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
+
         mListener = listener;
     }
 
@@ -65,7 +67,7 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ViewHold
         return mExampleList.size();
     }
 
-    public void setFilter(List<UserInfo> listitem){
+    public void setFilter(List<UserInfo> listitem) {
 
         mExampleList = new ArrayList<>();
         mExampleList.addAll(listitem);
@@ -80,12 +82,14 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ViewHold
 
         public ViewHolder(View itemView) {
             super(itemView);
+
             textView = itemView.findViewById(R.id.text_view_creator);
             imageView = itemView.findViewById(R.id.image_view);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
                     if (mListener != null) {
                         int position = getAdapterPosition();
                         if (position != RecyclerView.NO_POSITION) {
@@ -94,7 +98,6 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ViewHold
                     }
                 }
             });
-
         }
     }
 }

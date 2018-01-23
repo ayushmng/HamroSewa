@@ -153,6 +153,7 @@ public class ServiceMenu extends AppCompatActivity implements ExampleAdapter.OnI
 
     @Override
     public void onItemClick(int position) {
+
         Intent detailIntent = new Intent(this, AvailableServiceActivity.class);
         UserInfo clickedItem = mExampleList.get(position);
 
@@ -200,7 +201,7 @@ public class ServiceMenu extends AppCompatActivity implements ExampleAdapter.OnI
                     }
 
                     @Override
-                    public boolean onMenuItemActionExpand(MenuItem item) {
+                    public boolean onMenuItemActionExpand(MenuItem item) { // yo vaneko search icon ma click garda true value return garne..
 
                         //--------  Do something when expanded  --------------//
 
@@ -215,7 +216,7 @@ public class ServiceMenu extends AppCompatActivity implements ExampleAdapter.OnI
     public boolean onQueryTextChange(String newText) {
         final List<UserInfo> filteredModelList = filter(mExampleList, newText);
 
-        mExampleAdapter.setFilter(filteredModelList); // This setFilter is called from Example Adapter Class
+        mExampleAdapter.setFilter(filteredModelList); // This setFilter is called from Example AvailableServiceAdapter Class
         return true;
     }
 
