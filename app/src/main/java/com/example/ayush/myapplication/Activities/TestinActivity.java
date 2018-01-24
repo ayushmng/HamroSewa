@@ -1,4 +1,4 @@
-package com.example.ayush.myapplication;
+package com.example.ayush.myapplication.Activities;
 
 import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
@@ -20,6 +20,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.NetworkImageView;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.ayush.myapplication.R;
 import com.google.gson.JsonObject;
 
 import org.json.JSONArray;

@@ -1,28 +1,19 @@
-package com.example.ayush.myapplication;
+package com.example.ayush.myapplication.Activities;
 
-import android.Manifest;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.example.ayush.myapplication.Fragmentation.FragmentActivity;
-import com.karan.churi.PermissionManager.PermissionManager;
-
-import java.util.ArrayList;
+import com.example.ayush.myapplication.R;
 
 public class MainActivity extends AppCompatActivity {
 

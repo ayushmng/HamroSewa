@@ -155,9 +155,10 @@ public class ServiceMenu extends AppCompatActivity implements ExampleAdapter.OnI
     public void onItemClick(UserInfo userInfo) {
 
         Intent detailIntent = new Intent(this, AvailableServiceActivity.class);
-//
+
 //        detailIntent.putExtra(EXTRA_URL, clickedItem.getImageUrl());
 //        detailIntent.putExtra(EXTRA_CREATOR, clickedItem.getCreator());
+
         detailIntent.putExtra("userInfo", userInfo);
 
         startActivity(detailIntent);
@@ -216,7 +217,7 @@ public class ServiceMenu extends AppCompatActivity implements ExampleAdapter.OnI
     public boolean onQueryTextChange(String newText) {
         final List<UserInfo> filteredModelList = filter(mExampleList, newText);
 
-        mExampleAdapter.setFilter(filteredModelList); // This setFilter is called from Example AvailableServiceAdapter Class
+        mExampleAdapter.setFilter(filteredModelList); // This setFilter is called from ExampleAdapter Class
         return true;
     }
 

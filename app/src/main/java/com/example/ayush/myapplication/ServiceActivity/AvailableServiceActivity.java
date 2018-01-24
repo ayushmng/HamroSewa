@@ -37,9 +37,6 @@ import static com.example.ayush.myapplication.ServiceActivity.ServiceMenu.EXTRA_
 
 public class AvailableServiceActivity extends AppCompatActivity {
 
-    public static final String TAG_ID = "orga_orgid";
-    public static final String TAG_NAME = "orga_organame";
-
     TextView textView1, textView2, textView3;
     ProgressBar progressbar;
     RequestQueue requestQueue;
@@ -47,9 +44,6 @@ public class AvailableServiceActivity extends AppCompatActivity {
     private List<UserInfo2> list = new ArrayList<UserInfo2>();
     private ListView listView;
     private AvailableServiceAdapter adapter;
-
-//    String orgListUrl = "https://xelwel.com.np/hamrosewaapp/api/get_organization_list";
-//    String fetchurl = "http://10.0.2.2/MyApplication/select.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +54,7 @@ public class AvailableServiceActivity extends AppCompatActivity {
         setTitle("Available Services");
 
 //----------------------  For making top Hospital Name dynamic ---------------------//
+
         UserInfo userInfo = (UserInfo) getIntent().getSerializableExtra("userInfo");
 
 //        String name = intent.getStringExtra(EXTRA_CREATOR);
@@ -95,15 +90,16 @@ public class AvailableServiceActivity extends AppCompatActivity {
             public void onResponse(String response) {
 
                 try {
+
                     JSONObject jsonObject = new JSONObject(response);
 
                     JSONArray jsonArray = jsonObject.getJSONArray("org_list");
 
-//                    UserInfo2 info = new UserInfo2();
-
                     for (int i = 0; i < jsonArray.length(); i++) {
 
                         JSONObject patient = jsonArray.getJSONObject(i);
+
+//                       UserInfo2 info = new UserInfo2();
 
 //                        info.setId(patient.getString("orga_orgid"));
 //                        info.setName(patient.getString("orga_organame"));

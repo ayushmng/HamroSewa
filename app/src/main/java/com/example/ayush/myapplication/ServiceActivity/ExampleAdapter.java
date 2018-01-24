@@ -59,17 +59,16 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ViewHold
         holder.textView.setText(hsname);
         Picasso.with(mcontext).load(image).fit().centerInside().into(holder.imageView);
 //        Glide.with(mcontext).load(image).into(holder.imageView);
+
         holder.rootView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                UserInfo userInfo = mExampleList.get(position);
 
+                UserInfo userInfo = mExampleList.get(position);
                 mListener.onItemClick(userInfo);
 
             }
         });
-
-
     }
 
     @Override

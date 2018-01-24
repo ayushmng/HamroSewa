@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fff"
-    tools:context="com.example.ayush.myapplication.BedMenuActivity">
+    tools:context="com.example.ayush.myapplication.Activities.BedMenuActivity">
 
     <TextView
         android:id="@+id/category"

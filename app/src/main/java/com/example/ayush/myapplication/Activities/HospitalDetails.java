@@ -1,4 +1,4 @@
-package com.example.ayush.myapplication;
+package com.example.ayush.myapplication.Activities;
 
 import android.Manifest;
 import android.content.Intent;
@@ -19,11 +19,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ayush.myapplication.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.squareup.picasso.Picasso;
 
+import static com.example.ayush.myapplication.Fragmentation.RadioActivitydeICU.EXTRA_ADDRESS;
+import static com.example.ayush.myapplication.Fragmentation.RadioActivitydeICU.EXTRA_CONTACT;
+import static com.example.ayush.myapplication.Fragmentation.RadioActivitydeICU.EXTRA_NAME;
+import static com.example.ayush.myapplication.Fragmentation.RadioActivitydeICU.IMAGE_URL;
 import static com.example.ayush.myapplication.ServiceActivity.ServiceMenu.EXTRA_CREATOR;
 import static com.example.ayush.myapplication.ServiceActivity.ServiceMenu.EXTRA_URL;
 
@@ -40,15 +45,22 @@ public class HospitalDetails extends AppCompatActivity {
 
 //-----------------------------  Calling Intent starts from here  ----------------------------------------------------------//
 
-//        Intent intent = getIntent();
-//        String imageUrl = intent.getStringExtra(EXTRA_URL);
-//        String name = intent.getStringExtra(EXTRA_CREATOR);
-//
-//        ImageView imageView = findViewById(R.id.HospitalImage);
-//        TextView textView = findViewById(R.id.HospitalHead);
-//
-//        Picasso.with(this).load(imageUrl).fit().centerInside().into(imageView);
-//        textView.setText(name);
+        Intent intent = getIntent();
+        String imageUrl = intent.getStringExtra(IMAGE_URL);
+        String name = intent.getStringExtra(EXTRA_NAME);
+        String cntc = intent.getStringExtra(EXTRA_CONTACT);
+        String addr = intent.getStringExtra(EXTRA_ADDRESS);
+
+        ImageView imageView = findViewById(R.id.HospitalImage);
+        TextView textView = findViewById(R.id.HospitalHead);
+        TextView textView2 = findViewById(R.id.Phoneno_);
+        TextView textView3 = findViewById(R.id.Address);
+
+        Picasso.with(this).load(imageUrl).fit().centerInside().into(imageView);
+        textView.setText(name);
+        textView2.setText(cntc);
+        textView3.setText(addr);
+
 
 //-----------------------------  Upto here is getting intent from another page  ---------------------------------------------//
 

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/loadingpage"
-    tools:context="com.example.ayush.myapplication.MainActivity">
+    tools:context="com.example.ayush.myapplication.Activities.MainActivity">
 
     <TextView
         android:id="@+id/title"

@@ -1,4 +1,4 @@
-package com.example.ayush.myapplication;
+package com.example.ayush.myapplication.Activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.example.ayush.myapplication.Fragmentation.RadioActivitydeCCU;
 import com.example.ayush.myapplication.Fragmentation.RadioActivitydeICU;
 import com.example.ayush.myapplication.Fragmentation.RadioActivitydeNICU;
+import com.example.ayush.myapplication.R;
 
 
 public class BedMenuActivity extends AppCompatActivity {
