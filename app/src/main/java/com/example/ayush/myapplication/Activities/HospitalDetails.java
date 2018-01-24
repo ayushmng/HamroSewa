@@ -48,7 +48,7 @@ public class HospitalDetails extends AppCompatActivity {
         Intent intent = getIntent();
         String imageUrl = intent.getStringExtra(IMAGE_URL);
         String name = intent.getStringExtra(EXTRA_NAME);
-        String cntc = intent.getStringExtra(EXTRA_CONTACT);
+        final String cntc = intent.getStringExtra(EXTRA_CONTACT);
         String addr = intent.getStringExtra(EXTRA_ADDRESS);
 
         ImageView imageView = findViewById(R.id.HospitalImage);
@@ -74,7 +74,7 @@ public class HospitalDetails extends AppCompatActivity {
             public void onClick(View view) {
 
                 Intent intent = new Intent(Intent.ACTION_DIAL);
-                String phone = "tel:"+"9842420134";
+                String phone = "tel:"+cntc;
                 intent.setData(Uri.parse(phone));
                 startActivity(intent);
                 Snackbar.make(view, "Call in progress...", Snackbar.LENGTH_LONG)

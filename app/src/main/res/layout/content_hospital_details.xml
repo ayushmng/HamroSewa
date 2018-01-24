@@ -35,13 +35,17 @@
             android:textColor="@color/NavyGreen"
             android:textSize="15dp" />
 
+
         <TextView
             android:id="@+id/Contactno."
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/Phoneno."
+            android:layout_alignBottom="@+id/Phoneno."
             android:layout_alignLeft="@+id/Address"
             android:layout_alignStart="@+id/Address"
-            android:layout_below="@+id/Address"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:text="Contact No.:"
             android:textColor="@color/NavyGreen"
             android:textSize="15dp" />

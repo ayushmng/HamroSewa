@@ -15,8 +15,16 @@
         android:textColor="@color/NavyGreen"
         android:textSize="25dp"
         android:paddingLeft="10dp"
-        android:paddingTop="5dp"
+        android:paddingTop="2dp"
         android:textStyle="bold"/>
+
+    <HorizontalScrollView
+        android:id="@+id/hour_scroll_view"
+        android:layout_below="@+id/category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        android:scrollbars="none" >
 
     <RadioGroup
         android:id="@+id/radio"
@@ -34,9 +42,9 @@
             android:text="ICU"
             android:textSize="20dp"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
             android:padding="10dp"
             android:textColor="#000"
             android:buttonTint="@color/NavyGreen"/>
@@ -47,9 +55,9 @@
             android:layout_height="wrap_content"
             android:text="NICU"
             android:textSize="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
             android:padding="10dp"
             android:textColor="#000"
             android:buttonTint="@color/NavyGreen"/>
@@ -60,24 +68,26 @@
             android:layout_height="wrap_content"
             android:text="CCU"
             android:textSize="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
             android:padding="10dp"
             android:textColor="#000"
             android:buttonTint="@color/NavyGreen"/>
 
     </RadioGroup>
 
+    </HorizontalScrollView>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/NavyGreen"
-        android:layout_below="@+id/radio"/>
+        android:layout_below="@+id/hour_scroll_view"/>
 
     <TextView
         android:id="@+id/HospitalName"
-        android:layout_below="@+id/radio"
+        android:layout_below="@+id/hour_scroll_view"
         android:paddingLeft="10dp"
         android:paddingTop="5dp"
         android:layout_width="wrap_content"
