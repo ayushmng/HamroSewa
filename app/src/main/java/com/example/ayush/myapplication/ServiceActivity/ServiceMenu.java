@@ -61,7 +61,6 @@ public class ServiceMenu extends AppCompatActivity implements ExampleAdapter.OnI
         progressbar = findViewById(R.id.progressBar);
         progressbar.setVisibility(View.VISIBLE);
 
-
         gridLayoutManager = new GridLayoutManager(this, 2);
         mRecyclerView = findViewById(R.id.recycler_view);
         mRecyclerView.setHasFixedSize(true);

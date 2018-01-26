@@ -3,10 +3,16 @@ package com.example.ayush.myapplication.Activities;
 import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +26,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.NetworkImageView;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.ayush.myapplication.Fragmentation.RadioActivitydeICU;
 import com.example.ayush.myapplication.R;
 import com.google.gson.JsonObject;
 
@@ -27,78 +34,102 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class TestinActivity extends AppCompatActivity {
 
-    private RequestQueue requestQueue;
-    private TextView txtview;
-
-
-    final String fetchurl = "http://xelwel.com.np/hamrosewaapp/api/get_organization_list";
+    private List<View> mExampleList = new ArrayList<View>();
+    private RequestQueue mRequestQueue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_testin);
 
-        txtview = findViewById(R.id.Textview);
-//        imageView = findViewById(R.id.Hospital1);
-
-//        ImageRequest imageRequest = new ImageRequest(imageurl, new Response.Listener<Bitmap>() {
-//            @Override
-//            public void onResponse(Bitmap response) {
-//
-//                ImageView imageView = (ImageView) findViewById(R.id.Hospital1);
-//                imageView.setImageBitmap(response);
-//            }
-//        }, 0, 0, ImageView.ScaleType.CENTER_CROP, null, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                Toast.makeText(TestinActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
-//                error.printStackTrace();
-//            }
-//        });
-//        //add request to queue
-//        VolleySingleton.getInstance(TestinActivity.this).addToRequestQueue(imageRequest);
-
-        requestQueue = Volley.newRequestQueue(this);
+        mRequestQueue = Volley.newRequestQueue(this);
 
         jsonParse();
-
     }
 
     public void jsonParse() {
 
+        final String url = ("https://xelwel.com.np/hamrosewaapp/api/get_organization_list");
 
-        final StringRequest request = new StringRequest(Request.Method.POST, fetchurl, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
+        final LinearLayout viewProductLayout = findViewById(R.id.customOptionLL);
 
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
+        StringRequest request = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
 
-                    JSONArray jsonArray = jsonObject.getJSONArray("org_list");
+                    @Override
+                    public void onResponse(String response) {
 
-                    for (int i = 0; i < jsonArray.length(); i++) {
+                        Log.i("response", url + "response:" + response);
 
-                        JSONObject obj = jsonArray.getJSONObject(i);
+                        try {
 
-                        String Hname = obj.getString("orga_organame");
-                        txtview.append(Hname + " "+"\n\n");
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
+                            params.topMargin = 3;
+                            params.bottomMargin = 3;
+
+                            JSONObject object = new JSONObject(response);
+                            JSONArray jsonArray = object.getJSONArray("org_list");
+
+                            RadioGroup rg = new RadioGroup(TestinActivity.this);
+                            rg.setOrientation(RadioGroup.VERTICAL);
+
+                            for (int i = 0; i < jsonArray.length(); i++) {
+
+                                RadioButton rb = new RadioButton(TestinActivity.this);
+//                                RadioButton rb = findViewById(R.id.radiobtn);
+                                rg.addView(rb,params);
+
+                                if (i == 0)
+
+                                    rb.setChecked(true);
+                                rb.setLayoutParams(params);
+                                    rb.setTag(jsonArray.getJSONObject(i).getString("orga_organame"));
+
+                                String optionString = jsonArray.getJSONObject(i).getString("orga_organame");
+                                rb.setText(optionString);
+                                rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
+                                    @Override
+                                    public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+                                        View radioButton = group.findViewById(checkedId);
+                                        String variant_name = radioButton.getTag().toString();
+                                        Toast.makeText(getApplicationContext(), variant_name + "", Toast.LENGTH_LONG).show();
+                                        getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, new RadioActivitydeICU()).commit();
+                                    }
+                                });
+
+                                viewProductLayout.addView(rg,params);
+                                mExampleList.add(rg);
+
+//                                JSONObject hit = jsonArray.getJSONObject(i);
+//                                String creatorName = hit.getString("dept_depname"); // yo string paxi ko obj ko name mathi extra ma haleko xa
+//                                mExampleList.add(new UserInfo(creatorName));
+                            }
+
+                        } catch (JSONException e) {
+                            Toast.makeText(getApplicationContext(), "Error Parsing Data", Toast.LENGTH_LONG);
+                            e.printStackTrace();
+                        } catch (Exception e) {
+                            Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_LONG);
+                        }
                     }
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
+                }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
+                Toast.makeText(TestinActivity.this, "No items available", Toast.LENGTH_LONG).show();
             }
+
         }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
@@ -108,20 +139,7 @@ public class TestinActivity extends AppCompatActivity {
             }
         };
 
-        requestQueue.add(request);
+        mRequestQueue.add(request);
     }
-
-    //--------------------------------- For Back Button To Go On Back Process-----------------------------------------//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch (item.getItemId()) {
-//            case android.R.id.home:
-//                // API 5+ solution
-//                onBackPressed();
-//                return true;
-//
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
-//    }
 }
+

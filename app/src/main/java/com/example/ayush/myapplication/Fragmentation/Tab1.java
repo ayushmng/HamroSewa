@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.example.ayush.myapplication.Activities.BedMenuActivity;
+import com.example.ayush.myapplication.Activities.TestinActivity;
 import com.example.ayush.myapplication.R;
 import com.example.ayush.myapplication.ServiceActivity.ServiceMenu;
 
@@ -86,7 +87,7 @@ public class Tab1 extends Fragment {
 
 //                Toast.makeText(getContext(),"Click on Hospital Names to view details", Toast.LENGTH_LONG).show();
 
-                Intent intent = new Intent(getActivity(), BedMenuActivity.class);
+                Intent intent = new Intent(getActivity(), TestinActivity.class);
                 startActivity(intent);
             }
         });

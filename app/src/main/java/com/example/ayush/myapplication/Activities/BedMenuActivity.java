@@ -34,7 +34,7 @@ public class BedMenuActivity extends AppCompatActivity {
         radioButton2.setOnClickListener(onClickListener);
         radioButton3.setOnClickListener(onClickListener);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.container, new RadioActivitydeICU()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, new RadioActivitydeICU()).commit();
     }
 
     public View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -43,14 +43,14 @@ public class BedMenuActivity extends AppCompatActivity {
 
             if (view.getId() == R.id.icu) {
 
-                getSupportFragmentManager().beginTransaction().replace(R.id.container, new RadioActivitydeICU()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, new RadioActivitydeICU()).commit();
 
             } else if (view.getId() == R.id.nicu) {
 
-                getSupportFragmentManager().beginTransaction().replace(R.id.container, new RadioActivitydeNICU()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, new RadioActivitydeNICU()).commit();
 
             } else {
-                getSupportFragmentManager().beginTransaction().replace(R.id.container, new RadioActivitydeCCU()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, new RadioActivitydeCCU()).commit();
             }
         }
     };

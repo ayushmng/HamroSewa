@@ -5,7 +5,7 @@
 
     <TextView
         android:id="@+id/Number1"
-        android:layout_width="wrap_content"
+        android:layout_width="125dp"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/ServiceName1"
         android:layout_alignBottom="@+id/ServiceName1"
@@ -14,9 +14,9 @@
         android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
         android:paddingLeft="2dp"
-        android:text=""
+        android:text="Civil Service Hospital"
         android:textColor="#000"
-        android:textSize="17dp" />
+        android:textSize="15dp" />
 
     <TextView
         android:id="@+id/ServiceName1"
@@ -26,9 +26,9 @@
         android:layout_centerHorizontal="true"
         android:paddingLeft="5dp"
         android:padding="10dp"
-        android:text=""
+        android:text="12"
         android:textColor="#000"
-        android:textSize="17dp" />
+        android:textSize="15dp" />
 
     <TextView
         android:id="@+id/Amount1"
@@ -40,8 +40,8 @@
         android:layout_marginEnd="25dp"
         android:layout_marginRight="25dp"
         android:padding="10dp"
-        android:text=""
+        android:text="10"
         android:textColor="#000"
-        android:textSize="17dp" />
+        android:textSize="15dp" />
 
 </RelativeLayout>

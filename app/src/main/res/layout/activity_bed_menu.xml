@@ -135,7 +135,7 @@
     android:background="@color/NavyGreen"
     android:layout_below="@+id/HospitalName"/>
 
-   <FrameLayout android:id="@+id/container"
+   <FrameLayout android:id="@+id/framelayout"
        android:layout_below="@+id/view"
        android:layout_width="match_parent"
        android:layout_height="match_parent">

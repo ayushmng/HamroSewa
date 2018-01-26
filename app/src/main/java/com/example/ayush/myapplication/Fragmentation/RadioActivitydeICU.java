@@ -75,7 +75,7 @@ public class RadioActivitydeICU extends Fragment {
                 try {
 
                     JSONObject jsonObject = new JSONObject(response);
-                    JSONArray jsonArray = jsonObject.getJSONArray("bed_service");
+                    JSONArray jsonArray = jsonObject.getJSONArray("get_bedservice");
 
 //                    UserInfo info = new UserInfo();
 
@@ -88,8 +88,8 @@ public class RadioActivitydeICU extends Fragment {
 //                        list.add(info);
 
                         String Hsname = patient.getString("orga_organame");
-                        String Totbed = patient.getString("hobi_totalbed");
-                        String Vacbed = patient.getString("hobi_vacantbed");
+                        String Totbed = patient.getString("hobs_totalbed");
+                        String Vacbed = patient.getString("hobs_vacentbed");
                         String ImageUrl = patient.getString("orga_image");
                         String Phone = patient.getString("orga_contactno");
                         String Address = patient.getString("orga_orgaddress1");
