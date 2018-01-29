@@ -31,6 +31,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -95,7 +97,28 @@ public class ServiceMenu extends AppCompatActivity implements ExampleAdapter.OnI
 
                             for (int i = 0; i < jsonArray.length(); i++) {
 
-                                JSONObject hit = jsonArray.getJSONObject(i);
+                                final JSONObject hit = jsonArray.getJSONObject(i);
+
+                                Collections.sort(mExampleList, new Comparator<UserInfo>() {
+
+                                            @Override
+                                            public int compare(final UserInfo userInfo1, final UserInfo userInfo2) {
+
+                                                int order=-1;
+
+                                                if(userInfo1.getCreator().compareTo(userInfo2.getCreator()) == 0){
+                                                    return 0;
+                                                }else if(userInfo1.getCreator().compareTo(userInfo2.getCreator()) < 0){
+                                                    return order;
+                                                }else
+                                                    return (-1*order);
+
+//                                                return userInfo1.getCreator().compareTo(userInfo2.getCreator());
+//                                                    String creatorName = userInfo1.getCreator(); // yo string paxi ko obj ko name mathi extra ma haleko xa
+//                                                    String imageUrl = userInfo2.getImageUrl();
+//                                                    return creatorName.compareTo(imageUrl);
+                                            }
+                                        });
 
                                 String creatorName = hit.getString("orga_organame"); // yo string paxi ko obj ko name mathi extra ma haleko xa
                                 String imageUrl = hit.getString("orga_image");
@@ -237,8 +260,5 @@ public class ServiceMenu extends AppCompatActivity implements ExampleAdapter.OnI
         }
         return filteredModelList;
     }
-
-//---------------------------  Search stops from here  ----------------------------------------//
-
 }
-
+//---------------------------  Search stops from here  ----------------------------------------//

@@ -9,9 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.example.ayush.myapplication.Activities.BedMenuActivity;
-import com.example.ayush.myapplication.Activities.TestinActivity;
 import com.example.ayush.myapplication.R;
 import com.example.ayush.myapplication.ServiceActivity.ServiceMenu;
 
@@ -85,9 +85,9 @@ public class Tab1 extends Fragment {
             @Override
             public void onClick(View view) {
 
-//                Toast.makeText(getContext(),"Click on Hospital Names to view details", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(),"Click on Hospital Names to view details", Toast.LENGTH_LONG).show();
 
-                Intent intent = new Intent(getActivity(), TestinActivity.class);
+                Intent intent = new Intent(getActivity(), BedMenuActivity.class);
                 startActivity(intent);
             }
         });

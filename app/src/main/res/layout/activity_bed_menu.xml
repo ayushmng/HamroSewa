@@ -2,9 +2,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/customOptionLL"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fff"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark"
     tools:context="com.example.ayush.myapplication.Activities.BedMenuActivity">
 
     <TextView
@@ -27,53 +29,54 @@
         android:scrollbars="none" >
 
     <RadioGroup
-        android:id="@+id/radio"
+        android:id="@+id/radiogroup"
         android:layout_below="@+id/category"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="5dp"
         android:layout_weight="1"
         android:orientation="horizontal">
 
-        <RadioButton
-            android:id="@+id/icu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="ICU"
-            android:textSize="20dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginLeft="15dp"
-            android:padding="10dp"
-            android:textColor="#000"
-            android:buttonTint="@color/NavyGreen"/>
+        <!--<RadioButton-->
+            <!--android:id="@+id/icu"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:checked="true"-->
+            <!--android:text="ICU"-->
+            <!--android:textSize="20dp"-->
+            <!--android:layout_alignParentTop="true"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:layout_marginStart="15dp"-->
+            <!--android:layout_marginLeft="15dp"-->
+            <!--android:padding="10dp"-->
+            <!--android:textColor="#000"-->
+            <!--android:buttonTint="@color/NavyGreen"/>-->
 
-        <RadioButton
-            android:id="@+id/nicu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="NICU"
-            android:textSize="20dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp"
-            android:padding="10dp"
-            android:textColor="#000"
-            android:buttonTint="@color/NavyGreen"/>
+        <!--<RadioButton-->
+            <!--android:id="@+id/nicu"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="NICU"-->
+            <!--android:textSize="20dp"-->
+            <!--android:layout_marginStart="15dp"-->
+            <!--android:layout_marginLeft="15dp"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:padding="10dp"-->
+            <!--android:textColor="#000"-->
+            <!--android:buttonTint="@color/NavyGreen"/>-->
 
-        <RadioButton
-            android:id="@+id/ccu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="CCU"
-            android:textSize="20dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp"
-            android:padding="10dp"
-            android:textColor="#000"
-            android:buttonTint="@color/NavyGreen"/>
+        <!--<RadioButton-->
+            <!--android:id="@+id/ccu"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="CCU"-->
+            <!--android:textSize="20dp"-->
+            <!--android:layout_marginStart="15dp"-->
+            <!--android:layout_marginLeft="15dp"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:padding="10dp"-->
+            <!--android:textColor="#000"-->
+            <!--android:buttonTint="@color/NavyGreen"/>-->
 
     </RadioGroup>
 

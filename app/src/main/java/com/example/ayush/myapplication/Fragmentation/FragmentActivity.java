@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import com.example.ayush.myapplication.R;
 
-public class FragmentActivity extends AppCompatActivity implements Tab1.OnFragmentInteractionListener,Tab2.OnFragmentInteractionListener,Tab3.OnFragmentInteractionListener {
+public class FragmentActivity extends AppCompatActivity implements Tab1.OnFragmentInteractionListener,Tab3.OnFragmentInteractionListener {
 
 
     @Override
@@ -21,7 +21,6 @@ public class FragmentActivity extends AppCompatActivity implements Tab1.OnFragme
 
         TabLayout tabLayout = findViewById(R.id.tablayout);
         tabLayout.addTab(tabLayout.newTab().setText("Main"));
-        tabLayout.addTab(tabLayout.newTab().setText("Quick"));
         tabLayout.addTab(tabLayout.newTab().setText("About Us"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
