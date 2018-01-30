@@ -104,16 +104,16 @@ public class ServiceMenu extends AppCompatActivity implements ExampleAdapter.OnI
                                             @Override
                                             public int compare(final UserInfo userInfo1, final UserInfo userInfo2) {
 
-                                                int order=-1;
+//                                                int order=-1;
+//
+//                                                if(userInfo1.getCreator().compareTo(userInfo2.getCreator()) == 0){
+//                                                    return 0;
+//                                                }else if(userInfo1.getCreator().compareTo(userInfo2.getCreator()) < 0){
+//                                                    return order;
+//                                                }else
+//                                                    return (-1*order);
 
-                                                if(userInfo1.getCreator().compareTo(userInfo2.getCreator()) == 0){
-                                                    return 0;
-                                                }else if(userInfo1.getCreator().compareTo(userInfo2.getCreator()) < 0){
-                                                    return order;
-                                                }else
-                                                    return (-1*order);
-
-//                                                return userInfo1.getCreator().compareTo(userInfo2.getCreator());
+                                                return userInfo1.getCreator().compareTo(userInfo2.getCreator());
 //                                                    String creatorName = userInfo1.getCreator(); // yo string paxi ko obj ko name mathi extra ma haleko xa
 //                                                    String imageUrl = userInfo2.getImageUrl();
 //                                                    return creatorName.compareTo(imageUrl);

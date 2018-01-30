@@ -19,7 +19,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.ayush.myapplication.Fragmentation.RadioActivitydeICU;
+import com.example.ayush.myapplication.Fragmentation.FragmentRadioActivity;
 import com.example.ayush.myapplication.R;
 
 import org.json.JSONArray;
@@ -52,7 +52,7 @@ public class BedMenuActivity extends AppCompatActivity {
 //        radioButton2.setOnClickListener(onClickListener);
 //        radioButton3.setOnClickListener(onClickListener);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, new RadioActivitydeICU()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, new FragmentRadioActivity()).commit();
 
         mRequestQueue = Volley.newRequestQueue(this);
 
@@ -124,7 +124,7 @@ public class BedMenuActivity extends AppCompatActivity {
                                             View radioButton = group.findViewById(checkedId);
                                             String variant_name = radioButton.getTag().toString();
                                             Toast.makeText(getApplicationContext(), variant_name + "", Toast.LENGTH_LONG).show();
-                                            getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, new RadioActivitydeICU()).commit();
+                                            getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, new FragmentRadioActivity()).commit();
                                         }
                                     });
                                 }

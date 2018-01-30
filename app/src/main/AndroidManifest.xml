@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
@@ -40,7 +40,9 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ServiceActivity.AvailableServiceActivity" />
         <activity android:name=".ServiceActivity.ServiceMenu" />
-        <activity android:name=".Activities.TestinActivity"></activity>
+        <activity android:name=".Activities.TestinActivity" />
+        <activity android:name=".AboutUs.AboutHelpingHandActivity" />
+        <activity android:name=".AboutUs.AppVersions"></activity>
     </application>
 
 </manifest>
