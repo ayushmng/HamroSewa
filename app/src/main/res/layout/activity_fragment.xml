@@ -42,6 +42,11 @@
         android:minHeight="?attr/actionBarSize"
         app:tabTextColor="@color/Grey"
         app:tabSelectedTextColor="#fff"
+        android:layout_alignParentBottom="true"
+        app:tabGravity="fill"
+        app:tabMode="fixed"
+        app:tabPaddingStart="50dp"
+        app:tabPaddingEnd="50dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"></android.support.design.widget.TabLayout>
 
 

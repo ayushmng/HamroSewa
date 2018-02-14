@@ -1,17 +1,11 @@
-package com.example.ayush.myapplication.ServiceActivity;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.v4.view.MenuItemCompat;
+package com.example.ayush.myapplication.HospitalDepartment;
+
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
+import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.GridView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -24,21 +18,18 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.ayush.myapplication.R;
+import com.example.ayush.myapplication.ServiceActivity.UserInfo2;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.example.ayush.myapplication.ServiceActivity.ServiceMenu.EXTRA_CREATOR;
-
-public class AvailableServiceActivity extends AppCompatActivity {
+public class DepartmentsActivity extends AppCompatActivity {
 
     TextView textView1, textView2, textView3;
     ProgressBar progressbar;
@@ -46,19 +37,19 @@ public class AvailableServiceActivity extends AppCompatActivity {
 
     private List<UserInfo2> list = new ArrayList<UserInfo2>();
     private ListView listView;
-    private AvailableServiceAdapter adapter;
+    private HospitalDepartAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_available_service);
+        setContentView(R.layout.activity_departments);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle("Available Services");
 
 //----------------------  For making top Hospital Name dynamic ---------------------//
 
-        UserInfo userInfo = (UserInfo) getIntent().getSerializableExtra("userInfo");
+        DepartInfo userInfo = (DepartInfo) getIntent().getSerializableExtra("userInfo");
 
 //        String name = intent.getStringExtra(EXTRA_CREATOR);
 
@@ -86,7 +77,7 @@ public class AvailableServiceActivity extends AppCompatActivity {
 
         //        String fetchurl = getIntent().getStringExtra("fetch_url");
 
-        final String fetchurl = ("https://xelwel.com.np/hamrosewaapp/api/get_organization_list");
+        final String fetchurl = ("https://xelwel.com.np/hamrosewaapp/api/get_bed_info_department");
 
         final StringRequest request = new StringRequest(Request.Method.POST, fetchurl, new Response.Listener<String>() {
             @Override
@@ -96,7 +87,7 @@ public class AvailableServiceActivity extends AppCompatActivity {
 
                     JSONObject jsonObject = new JSONObject(response);
 
-                    JSONArray jsonArray = jsonObject.getJSONArray("org_list");
+                    JSONArray jsonArray = jsonObject.getJSONArray("department_list");
 
                     for (int i = 0; i < jsonArray.length(); i++) {
 
@@ -108,12 +99,12 @@ public class AvailableServiceActivity extends AppCompatActivity {
 //                        info.setName(patient.getString("orga_organame"));
 //                        list.add(info);
 
-                        String Id = patient.getString("orga_orgid");
-                        String Name = patient.getString("orga_organame");
+                        String Id = patient.getString("dept_depid");
+                        String Name = patient.getString("dept_depname");
                         // String Amount = patient.getString("");
                         list.add(new UserInfo2(Id, Name));
 
-                        adapter = new AvailableServiceAdapter(AvailableServiceActivity.this, list);
+                        adapter = new HospitalDepartAdapter(DepartmentsActivity.this, list);
                         listView.setAdapter(adapter);
 
 //                        textView1.append(Id + "." + "\n\n");

@@ -27,7 +27,8 @@
         <activity
             android:name=".Activities.BedMenuActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".Activities.MainActivity">
+        <activity android:name=".Activities.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -40,9 +41,9 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ServiceActivity.AvailableServiceActivity" />
         <activity android:name=".ServiceActivity.ServiceMenu" />
-        <activity android:name=".Activities.TestinActivity" />
         <activity android:name=".AboutUs.AboutHelpingHandActivity" />
-        <activity android:name=".AboutUs.AppVersions"></activity>
+        <activity android:name=".AboutUs.AppVersions" />
+        <activity android:name=".HospitalDepartment.HospitalDepartActivity" />
+        <activity android:name=".HospitalDepartment.DepartmentsActivity"></activity>
     </application>
-
 </manifest>

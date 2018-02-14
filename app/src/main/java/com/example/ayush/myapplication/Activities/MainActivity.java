@@ -41,6 +41,12 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        }, SPLASH_TIME_OUT);
 
+//        if (isConnected(MainActivity.this)){
+//
+//            Intent intent = new Intent(MainActivity.this,MainActivity.class);
+//            startActivity(intent);
+//        }
+
         if (!isConnected(MainActivity.this)) buildDialog(MainActivity.this).show();
         else {
             setContentView(R.layout.activity_main);
@@ -69,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
             if ((mobile != null && mobile.isConnectedOrConnecting()) || (wifi != null && wifi.isConnectedOrConnecting()))
                 return true;
-            else return false;
+            else return true;
         } else
             return false;
     }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/loadingpage"
+    android:background="@drawable/side_nav_bar"
     tools:context="com.example.ayush.myapplication.Activities.MainActivity">
 
     <TextView
@@ -12,28 +12,42 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="30dp"
-        android:paddingLeft="40dp"
-        android:paddingRight="10dp"
-        android:textStyle="italic"
+        android:gravity="center"
+        android:fontFamily="sans-serif-condensed"
         android:textColor="@color/NavyGreen"
-        android:shadowColor="@color/NavyGreen"
-        android:textColorHighlight="@color/NavyGreen"
-        android:textColorLink="@color/NavyGreen"
-        android:textSize="55dp"
+        android:textSize="50dp"
         android:text="Hamro Sewa"
         />
 
     <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/copyright"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:padding="5dp"
+        android:textStyle="italic"
+        android:text="Powered By: Xelwel Innovation"
+        android:textColor="@color/NavyGreen"
+        android:textSize="18dp" />
+
+    <TextView android:id="@+id/copyright"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginBottom="5dp"
-        android:padding="10dp"
-        android:textSize="18dp"
-        android:id="@+id/textView2" />
-        <!--android:text="Powered By: Xelwel Innovation"-->
+        android:padding="5dp"
+        android:text="Copyright © Xelwel 2015"
+        android:textSize="15dp" />
+
+    <ImageView
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_centerInParent="true"
+        android:src="@mipmap/hlpnghnd"/>
+
 
     <ProgressBar
         android:id="@+id/progressBar"

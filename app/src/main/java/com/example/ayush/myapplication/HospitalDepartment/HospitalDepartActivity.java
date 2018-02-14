@@ -1,24 +1,23 @@
-package com.example.ayush.myapplication.ServiceActivity;
+package com.example.ayush.myapplication.HospitalDepartment;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -26,6 +25,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.ayush.myapplication.R;
+import com.example.ayush.myapplication.ServiceActivity.AvailableServiceActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,27 +38,26 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ServiceMenu extends AppCompatActivity implements ExampleAdapter.OnItemClickListener, SearchView.OnQueryTextListener {
+public class HospitalDepartActivity extends AppCompatActivity implements DepartAdapter.OnItemClickListener, SearchView.OnQueryTextListener {
 
     public static final String EXTRA_CREATOR = "creatorName"; // tala ko data ma vayeko url ko object banako ko obj name haleko ho
     public static final String EXTRA_URL = "imageUrl";
 
     private RecyclerView mRecyclerView;
-    private ExampleAdapter mExampleAdapter;
+    private DepartAdapter mExampleAdapter;
     private RequestQueue mRequestQueue;
     private GridLayoutManager gridLayoutManager;
 
 //    private ArrayList<DepartInfo> mExampleList;
 
-    private List<UserInfo> mExampleList = new ArrayList<>();
+    private List<DepartInfo> mExampleList = new ArrayList<>();
 //    ProgressBar progressbar;
-
     ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.service_menu);
+        setContentView(R.layout.activity_hospital_depart);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle("Services");
@@ -66,7 +65,7 @@ public class ServiceMenu extends AppCompatActivity implements ExampleAdapter.OnI
 //        progressbar = findViewById(R.id.progressBar);
 //        progressbar.setVisibility(View.VISIBLE);
 
-        progressDialog = new ProgressDialog(ServiceMenu.this,R.style.ProgressDialogStyle);
+        progressDialog = new ProgressDialog(HospitalDepartActivity.this,R.style.ProgressDialogStyle);
         progressDialog.setMessage("Loading..."); // Setting Message
         progressDialog.setTitle("Please Wait"); // Setting Title
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER); // Progress Dialog Style Spinner
@@ -108,10 +107,10 @@ public class ServiceMenu extends AppCompatActivity implements ExampleAdapter.OnI
 
                                 final JSONObject hit = jsonArray.getJSONObject(i);
 
-                                Collections.sort(mExampleList, new Comparator<UserInfo>() {
+                                Collections.sort(mExampleList, new Comparator<DepartInfo>() {
 
-                                            @Override
-                                            public int compare(final UserInfo userInfo1, final UserInfo userInfo2) {
+                                    @Override
+                                    public int compare(final DepartInfo userInfo1, final DepartInfo userInfo2) {
 
 //                                                int order=-1;
 //
@@ -122,22 +121,22 @@ public class ServiceMenu extends AppCompatActivity implements ExampleAdapter.OnI
 //                                                }else
 //                                                    return (-1*order);
 
-                                                return userInfo1.getCreator().compareTo(userInfo2.getCreator());
+                                        return userInfo1.getCreator().compareTo(userInfo2.getCreator());
 //                                                    String creatorName = userInfo1.getCreator(); // yo string paxi ko obj ko name mathi extra ma haleko xa
 //                                                    String imageUrl = userInfo2.getImageUrl();
 //                                                    return creatorName.compareTo(imageUrl);
-                                            }
-                                        });
+                                    }
+                                });
 
                                 String creatorName = hit.getString("orga_organame"); // yo string paxi ko obj ko name mathi extra ma haleko xa
                                 String imageUrl = hit.getString("orga_image");
 
-                                mExampleList.add(new UserInfo(imageUrl, creatorName));
+                                mExampleList.add(new DepartInfo(imageUrl, creatorName));
                             }
 
-                            mExampleAdapter = new ExampleAdapter(ServiceMenu.this, mExampleList);
+                            mExampleAdapter = new DepartAdapter(HospitalDepartActivity.this, mExampleList);
                             mRecyclerView.setAdapter(mExampleAdapter);
-                            mExampleAdapter.setOnItemClickListener(ServiceMenu.this);
+                            mExampleAdapter.setOnItemClickListener(HospitalDepartActivity.this);
 
 //                            progressbar.setVisibility(View.GONE);
                             progressDialog.dismiss();
@@ -154,21 +153,21 @@ public class ServiceMenu extends AppCompatActivity implements ExampleAdapter.OnI
             @Override
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
-                Toast.makeText(ServiceMenu.this, "No items available", Toast.LENGTH_LONG).show();
-                Toast.makeText(ServiceMenu.this, "Please check your internet connection and try again!", Toast.LENGTH_LONG).show();
+                Toast.makeText(HospitalDepartActivity.this, "No items available", Toast.LENGTH_LONG).show();
+                Toast.makeText(HospitalDepartActivity.this, "Please check your internet connection and try again!", Toast.LENGTH_LONG).show();
 //                Toast.makeText(MainActivity.this,error.getMessage() ,Toast.LENGTH_LONG).show();
-            }
 
-//                int  statusCode = error.networkResponse.statusCode;
-//                NetworkResponse response = error.networkResponse;
-//
-//                if (response.getCode() == 500) {
-//                    Toast.makeText(aQuery.getContext(), "Server is busy, Try Again!", Toast.LENGTH_LONG).show();
-//                } else if (status.getCode() == 404) {
-//                    Toast.makeText(aQuery.getContext(), "Resource Not Found!", Toast.LENGTH_LONG).show();
-//                } else {
-//                    Toast.makeText(aQuery.getContext(), "Unexpected Error Occured !", Toast.LENGTH_LONG).show();
-//                }
+                int  statusCode = error.networkResponse.statusCode;
+                NetworkResponse response = error.networkResponse;
+
+                if (statusCode == 500) {
+                    Toast.makeText(HospitalDepartActivity.this, "Server is busy, Try Again!", Toast.LENGTH_LONG).show();
+                } else if (statusCode == 404) {
+                    Toast.makeText(HospitalDepartActivity.this, "Resource Not Found!", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(HospitalDepartActivity.this, "Unexpected Error Occured !", Toast.LENGTH_LONG).show();
+                }
+            }
 
 
         }) {
@@ -184,15 +183,14 @@ public class ServiceMenu extends AppCompatActivity implements ExampleAdapter.OnI
     }
 
     @Override
-    public void onItemClick(UserInfo userInfo) {
+    public void onItemClick(DepartInfo userInfo) {
 
-        Intent detailIntent = new Intent(this, AvailableServiceActivity.class);
+        Intent detailIntent = new Intent(this, DepartmentsActivity.class);
 
 //        detailIntent.putExtra(EXTRA_URL, clickedItem.getImageUrl());
 //        detailIntent.putExtra(EXTRA_CREATOR, clickedItem.getCreator());
 
         detailIntent.putExtra("userInfo", userInfo);
-
         startActivity(detailIntent);
     }
 
@@ -271,7 +269,7 @@ public class ServiceMenu extends AppCompatActivity implements ExampleAdapter.OnI
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        final List<UserInfo> filteredModelList = filter(mExampleList, newText);
+        final List<DepartInfo> filteredModelList = filter(mExampleList, newText);
 
         mExampleAdapter.setFilter(filteredModelList); // This setFilter is called from DepartAdapter Class
         return true;
@@ -282,11 +280,11 @@ public class ServiceMenu extends AppCompatActivity implements ExampleAdapter.OnI
         return false;
     }
 
-    private List<UserInfo> filter(List<UserInfo> models, String query) {
+    private List<DepartInfo> filter(List<DepartInfo> models, String query) {
         query = query.toLowerCase();
 
-        final List<UserInfo> filteredModelList = new ArrayList<>();
-        for (UserInfo model : models) {
+        final List<DepartInfo> filteredModelList = new ArrayList<>();
+        for (DepartInfo model : models) {
             final String text = model.getCreator().toLowerCase();
             if (text.contains(query)) {
                 filteredModelList.add(model);

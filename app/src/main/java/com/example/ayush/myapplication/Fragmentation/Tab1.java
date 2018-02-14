@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.ayush.myapplication.Activities.BedMenuActivity;
+import com.example.ayush.myapplication.HospitalDepartment.HospitalDepartActivity;
 import com.example.ayush.myapplication.R;
 import com.example.ayush.myapplication.ServiceActivity.ServiceMenu;
 
@@ -80,6 +81,7 @@ public class Tab1 extends Fragment {
 
         LinearLayout bedview = view.findViewById(R.id.linearlayout1);
         LinearLayout serviceview = view.findViewById(R.id.linearlayout2);
+        LinearLayout hsptldptview = view.findViewById(R.id.linearlayout3);
 
         bedview.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,6 +98,14 @@ public class Tab1 extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), ServiceMenu.class);
+                startActivity(intent);
+            }
+        });
+
+        hsptldptview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), HospitalDepartActivity.class);
                 startActivity(intent);
             }
         });

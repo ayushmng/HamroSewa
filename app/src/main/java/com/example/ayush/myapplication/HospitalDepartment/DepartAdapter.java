@@ -1,4 +1,4 @@
-package com.example.ayush.myapplication.ServiceActivity;
+package com.example.ayush.myapplication.HospitalDepartment;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.ayush.myapplication.R;
 import com.squareup.picasso.Picasso;
@@ -20,14 +19,14 @@ import java.util.List;
  * Created by Ayush on 12/31/2017.
  */
 
-public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ViewHolder> {
+public class DepartAdapter extends RecyclerView.Adapter<DepartAdapter.ViewHolder> {
 
     private Context mcontext;
-    private List<UserInfo> mExampleList;
+    private List<DepartInfo> mExampleList;
     private OnItemClickListener mListener;
 
     public interface OnItemClickListener {
-        void onItemClick(UserInfo userInfo);
+        void onItemClick(DepartInfo userInfo);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
@@ -35,7 +34,7 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ViewHold
         mListener = listener;
     }
 
-    public ExampleAdapter(Context context, List<UserInfo> list) {
+    public DepartAdapter(Context context, List<DepartInfo> list) {
 
         this.mcontext = context;
         this.mExampleList = list;
@@ -44,20 +43,20 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ViewHold
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View itemView = LayoutInflater.from(mcontext).inflate(R.layout.cardview, parent, false);
+        View itemView = LayoutInflater.from(mcontext).inflate(R.layout.hsdprtcardview, parent, false);
         return new ViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
 
-        UserInfo info = mExampleList.get(position);
+        DepartInfo info = mExampleList.get(position);
 
         String image = info.getImageUrl();
         String hsname = info.getCreator();
 
         holder.textView.setText(hsname);
-        // below in picasso placeholder is used for default image...
+        // below-> in picasso placeholder is used for default image...
         Picasso.with(mcontext).load(image).fit().centerInside().noFade().placeholder(R.mipmap.hlpnghnd).into(holder.imageView);
 //        Glide.with(mcontext).load(image).into(holder.imageView);
 
@@ -65,7 +64,7 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ViewHold
             @Override
             public void onClick(View view) {
 
-                UserInfo userInfo = mExampleList.get(position);
+                DepartInfo userInfo = mExampleList.get(position);
                 mListener.onItemClick(userInfo);
 
             }
@@ -78,7 +77,7 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ViewHold
         return mExampleList.size();
     }
 
-    void setFilter(List<UserInfo> listitem) {
+    void setFilter(List<DepartInfo> listitem) {
         mExampleList = new ArrayList<>();
         mExampleList.addAll(listitem);
         notifyDataSetChanged();

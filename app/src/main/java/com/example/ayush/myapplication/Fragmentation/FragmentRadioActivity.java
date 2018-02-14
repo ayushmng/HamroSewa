@@ -1,10 +1,15 @@
 package com.example.ayush.myapplication.Fragmentation;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,7 +44,8 @@ public class FragmentRadioActivity extends Fragment {
     public static final String EXTRA_CONTACT = "Phone";
     public static final String EXTRA_ADDRESS = "Address";
 
-    ProgressBar progressbar;
+   // ProgressBar progressbar;
+    ProgressDialog progressDialog;
     RequestQueue requestQueue;
 
     private List<UserInfo3> list = new ArrayList<UserInfo3>();
@@ -53,8 +59,15 @@ public class FragmentRadioActivity extends Fragment {
 
         listView = view.findViewById(R.id.list_view);
 
-        progressbar = view.findViewById(R.id.progressBar);
-        progressbar.setVisibility(View.VISIBLE);
+//        progressbar = view.findViewById(R.id.progressBar);
+//        progressbar.setVisibility(View.VISIBLE);
+
+        progressDialog = new ProgressDialog(getActivity(),R.style.ProgressDialogStyle);
+        progressDialog.setMessage("Loading..."); // Setting Message
+        progressDialog.setTitle("Please Wait"); // Setting Title
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER); // Progress Dialog Style Spinner
+        progressDialog.show(); // Display Progress Dialog
+//        progressDialog.setCancelable(false);
 
         requestQueue = Volley.newRequestQueue(getContext());
 
@@ -66,7 +79,7 @@ public class FragmentRadioActivity extends Fragment {
 
     public void jsonParse() {
 
-        final String fetchurl = ("https://xelwel.com.np/hamrosewaapp/api/get_bed_info_by_orgid/1 ");
+        final String fetchurl = ("https://xelwel.com.np/hamrosewaapp/api/get_bed_info_by_orgid/1");
 
         final StringRequest request = new StringRequest(Request.Method.POST, fetchurl, new Response.Listener<String>() {
             @Override
@@ -75,7 +88,7 @@ public class FragmentRadioActivity extends Fragment {
                 try {
 
                     JSONObject jsonObject = new JSONObject(response);
-                    JSONArray jsonArray = jsonObject.getJSONArray("get_bedservice");
+                    JSONArray jsonArray = jsonObject.getJSONArray("bed_service");
 
 //                    UserInfo info = new UserInfo();
 
@@ -88,13 +101,13 @@ public class FragmentRadioActivity extends Fragment {
 //                        list.add(info);
 
                         String Hsname = patient.getString("orga_organame");
-                        String Totbed = patient.getString("hobs_totalbed");
-                        String Vacbed = patient.getString("hobs_vacentbed");
+                        String Totbed = patient.getString("hobi_totalbed");
+                        String Vacbed = patient.getString("hobi_vacantbed");
                         String ImageUrl = patient.getString("orga_image");
                         String Phone = patient.getString("orga_contactno");
                         String Address = patient.getString("orga_orgaddress1");
 
-                       list.add(new UserInfo3(Hsname, Totbed, Vacbed, ImageUrl, Phone, Address));
+                        list.add(new UserInfo3(Hsname, Totbed, Vacbed, ImageUrl, Phone, Address));
 
                         adapter = new RadioAdapter(getActivity(), list); // fragment ma '.this' na line vayera getActivity use gareko instead of RadioActivityICU.this
                         listView.setAdapter(adapter);
@@ -115,7 +128,9 @@ public class FragmentRadioActivity extends Fragment {
                             }
                         });
 
-                        progressbar.setVisibility(View.GONE);
+                      //  progressbar.setVisibility(View.GONE);
+
+                        progressDialog.dismiss();
                     }
 
                 } catch (JSONException e) {

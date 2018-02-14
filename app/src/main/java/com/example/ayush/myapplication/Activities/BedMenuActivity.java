@@ -34,8 +34,6 @@ public class BedMenuActivity extends AppCompatActivity {
 
     private RequestQueue mRequestQueue;
 
-    RadioButton radioButton1, radioButton2, radioButton3;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,14 +41,6 @@ public class BedMenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_bed_menu);
 
         setTitle("Available Beds");
-
-//        radioButton1 = findViewById(R.id.icu);
-//        radioButton2 = findViewById(R.id.nicu);
-//        radioButton3 = findViewById(R.id.ccu);
-//
-//        radioButton1.setOnClickListener(onClickListener);
-//        radioButton2.setOnClickListener(onClickListener);
-//        radioButton3.setOnClickListener(onClickListener);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, new FragmentRadioActivity()).commit();
 
@@ -109,7 +99,6 @@ public class BedMenuActivity extends AppCompatActivity {
 //------------------------------------------------ Tint Colour ends here ---------------------------------------------------//
                                     rb.setText(jsonArray.getJSONObject(i).getString("dept_depname"));
                                     rb.setPadding(20,5,20,5);
-//                                rb.setPaddingRelative(20,5,20,5);
                                     rb.setTextSize(20);
                                     rg.addView(rb);
 
@@ -123,7 +112,7 @@ public class BedMenuActivity extends AppCompatActivity {
 
                                             View radioButton = group.findViewById(checkedId);
                                             String variant_name = radioButton.getTag().toString();
-                                            Toast.makeText(getApplicationContext(), variant_name + "", Toast.LENGTH_LONG).show();
+                                            Toast.makeText(getApplicationContext(), variant_name + "", Toast.LENGTH_SHORT).show();
                                             getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, new FragmentRadioActivity()).commit();
                                         }
                                     });
@@ -156,6 +145,30 @@ public class BedMenuActivity extends AppCompatActivity {
         };
 
         mRequestQueue.add(request);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.i("Lifecycle Starts", "onStart");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i("Lifecycle Resumes", "onResume");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.i("Lifecycle Pauses", "onPause");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.i("Lifecycle Stops", "onStop");
     }
 
     @Override
