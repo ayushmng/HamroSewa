@@ -83,6 +83,7 @@ public class FragmentActivity extends AppCompatActivity implements Tab1.OnFragme
     @Override
     public void onBackPressed() {
         if (mBackPressed + TIME_INTERVAL > System.currentTimeMillis()) {
+            System.exit(0);
             finish();
 
         } else {

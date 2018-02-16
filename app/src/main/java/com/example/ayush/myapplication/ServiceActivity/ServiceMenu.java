@@ -1,8 +1,12 @@
 package com.example.ayush.myapplication.ServiceActivity;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -25,6 +29,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.ayush.myapplication.Activities.BedMenuActivity;
+import com.example.ayush.myapplication.Activities.MainActivity;
+import com.example.ayush.myapplication.Activities.NoInternetConnectionActivity;
 import com.example.ayush.myapplication.R;
 
 import org.json.JSONArray;
@@ -63,6 +70,12 @@ public class ServiceMenu extends AppCompatActivity implements ExampleAdapter.OnI
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle("Services");
 
+        if (!isConnected(ServiceMenu.this)) {
+            Intent intent = new Intent(ServiceMenu.this, NoInternetConnectionActivity.class);
+            startActivity(intent);
+            finish(); // Yo finish garepaxi yo activity kill vayera NoInternetConnection page khulx n it is done so that when we enter in that page and when we press back this ServiceMenu Activity gets load again.
+        }
+
 //        progressbar = findViewById(R.id.progressBar);
 //        progressbar.setVisibility(View.VISIBLE);
 
@@ -71,6 +84,7 @@ public class ServiceMenu extends AppCompatActivity implements ExampleAdapter.OnI
         progressDialog.setTitle("Please Wait"); // Setting Title
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER); // Progress Dialog Style Spinner
         progressDialog.show(); // Display Progress Dialog
+//        progressDialog.setCancelable(false);// Lets to cancel or give no acces to click outer-surface
 
         gridLayoutManager = new GridLayoutManager(this, 2);
         mRecyclerView = findViewById(R.id.recycler_view);
@@ -86,6 +100,26 @@ public class ServiceMenu extends AppCompatActivity implements ExampleAdapter.OnI
 
         jsonParse();
     }
+
+//--------------------------------- For No Internet Connection show page -----------------------------------------------//
+
+    public boolean isConnected(Context context) {
+
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netinfo = cm.getActiveNetworkInfo();
+
+        if (netinfo != null && netinfo.isConnectedOrConnecting()) {
+            android.net.NetworkInfo wifi = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+            android.net.NetworkInfo mobile = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+
+            if ((mobile != null && mobile.isConnectedOrConnecting()) || (wifi != null && wifi.isConnectedOrConnecting()))
+                return true;
+            else return true;
+        } else
+            return false;
+    }
+
+// ------------------------------------------ No Internet Connection Ends here --------------------------------------------//
 
     public void jsonParse() {
 
@@ -154,9 +188,8 @@ public class ServiceMenu extends AppCompatActivity implements ExampleAdapter.OnI
             @Override
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
-                Toast.makeText(ServiceMenu.this, "No items available", Toast.LENGTH_LONG).show();
-                Toast.makeText(ServiceMenu.this, "Please check your internet connection and try again!", Toast.LENGTH_LONG).show();
-//                Toast.makeText(MainActivity.this,error.getMessage() ,Toast.LENGTH_LONG).show();
+                Toast.makeText(ServiceMenu.this, "No items available", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(ServiceMenu.this,error.getMessage() ,Toast.LENGTH_LONG).show();
             }
 
 //                int  statusCode = error.networkResponse.statusCode;
@@ -233,7 +266,8 @@ public class ServiceMenu extends AppCompatActivity implements ExampleAdapter.OnI
         }
     }
 
-//------------------------------------------ Searching System ---------------------------------------------------------------//
+
+    //------------------------------------------ Searching System ---------------------------------------------------------------//
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

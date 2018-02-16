@@ -2,8 +2,11 @@ package com.example.ayush.myapplication.Fragmentation;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.ayush.myapplication.Activities.BedMenuActivity;
+import com.example.ayush.myapplication.Activities.NoInternetConnectionActivity;
 import com.example.ayush.myapplication.HospitalDepartment.HospitalDepartActivity;
 import com.example.ayush.myapplication.R;
 import com.example.ayush.myapplication.ServiceActivity.ServiceMenu;
@@ -87,7 +91,7 @@ public class Tab1 extends Fragment {
             @Override
             public void onClick(View view) {
 
-                Toast.makeText(getContext(),"Click on Hospital Names to view details", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(),"Click on Hospital Names to view details", Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(getActivity(), BedMenuActivity.class);
                 startActivity(intent);
@@ -112,6 +116,7 @@ public class Tab1 extends Fragment {
 
         return view;
     }
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {

@@ -1,7 +1,10 @@
 package com.example.ayush.myapplication.HospitalDepartment;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,16 +24,20 @@ import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.ServerError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.ayush.myapplication.Activities.NoInternetConnectionActivity;
 import com.example.ayush.myapplication.R;
 import com.example.ayush.myapplication.ServiceActivity.AvailableServiceActivity;
+import com.example.ayush.myapplication.ServiceActivity.ServiceMenu;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -62,6 +69,12 @@ public class HospitalDepartActivity extends AppCompatActivity implements DepartA
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle("Services");
 
+        if (!isConnected(HospitalDepartActivity.this)) {
+            Intent intent = new Intent(HospitalDepartActivity.this, NoInternetConnectionActivity.class);
+            startActivity(intent);
+            finish(); // Yo finish garepaxi yo activity kill vayera NoInternetConnection page khulx n it is done so that when we enter in that page and when we press back this ServiceMenu Activity gets load again.
+        }
+
 //        progressbar = findViewById(R.id.progressBar);
 //        progressbar.setVisibility(View.VISIBLE);
 
@@ -85,6 +98,27 @@ public class HospitalDepartActivity extends AppCompatActivity implements DepartA
 
         jsonParse();
     }
+
+// -------------------------------------- For No Internet Connection show page -----------------------------------------------//
+
+    public boolean isConnected(Context context) {
+
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netinfo = cm.getActiveNetworkInfo();
+
+        if (netinfo != null && netinfo.isConnectedOrConnecting()) {
+            android.net.NetworkInfo wifi = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+            android.net.NetworkInfo mobile = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+
+            if ((mobile != null && mobile.isConnectedOrConnecting()) || (wifi != null && wifi.isConnectedOrConnecting()))
+                return true;
+            else return true;
+        } else
+            return false;
+    }
+
+// ------------------------------------------ No Internet Connection Ends here --------------------------------------------//
+
 
     public void jsonParse() {
 
@@ -153,20 +187,20 @@ public class HospitalDepartActivity extends AppCompatActivity implements DepartA
             @Override
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
-                Toast.makeText(HospitalDepartActivity.this, "No items available", Toast.LENGTH_LONG).show();
-                Toast.makeText(HospitalDepartActivity.this, "Please check your internet connection and try again!", Toast.LENGTH_LONG).show();
+                Toast.makeText(HospitalDepartActivity.this, "No items available", Toast.LENGTH_SHORT).show();
 //                Toast.makeText(MainActivity.this,error.getMessage() ,Toast.LENGTH_LONG).show();
 
-                int  statusCode = error.networkResponse.statusCode;
-                NetworkResponse response = error.networkResponse;
 
-                if (statusCode == 500) {
-                    Toast.makeText(HospitalDepartActivity.this, "Server is busy, Try Again!", Toast.LENGTH_LONG).show();
-                } else if (statusCode == 404) {
-                    Toast.makeText(HospitalDepartActivity.this, "Resource Not Found!", Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(HospitalDepartActivity.this, "Unexpected Error Occured !", Toast.LENGTH_LONG).show();
-                }
+//                int  statusCode = error.networkResponse.statusCode;
+//         //       NetworkResponse response = error.networkResponse;
+//
+//                if (statusCode == 500) {
+//                    Toast.makeText(HospitalDepartActivity.this, "Server is busy, Try Again!", Toast.LENGTH_LONG).show();
+//                } else if (statusCode == 404) {
+//                    Toast.makeText(HospitalDepartActivity.this, "Resource Not Found!", Toast.LENGTH_LONG).show();
+//                } else {
+//                    Toast.makeText(HospitalDepartActivity.this, "Unexpected Error Occured !", Toast.LENGTH_LONG).show();
+//                }
             }
 
 

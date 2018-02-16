@@ -1,7 +1,11 @@
 package com.example.ayush.myapplication.Activities;
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -21,6 +25,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.ayush.myapplication.Fragmentation.FragmentRadioActivity;
 import com.example.ayush.myapplication.R;
+import com.example.ayush.myapplication.ServiceActivity.ServiceMenu;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,12 +47,38 @@ public class BedMenuActivity extends AppCompatActivity {
 
         setTitle("Available Beds");
 
+        if (!isConnected(BedMenuActivity.this)) {
+            Intent intent = new Intent(BedMenuActivity.this, NoInternetConnectionActivity.class);
+            startActivity(intent);
+            finish(); // Yo finish garepaxi yo activity kill vayera NoInternetConnection page khulx n it is done so that when we enter in that page and when we press back this BedMenu Activity gets load again.
+        }
+
         getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, new FragmentRadioActivity()).commit();
 
         mRequestQueue = Volley.newRequestQueue(this);
 
         jsonParse();
     }
+
+// --------------------------------- For No Internet Connection show page -----------------------------------------------//
+
+    public boolean isConnected(Context context) {
+
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netinfo = cm.getActiveNetworkInfo();
+
+        if (netinfo != null && netinfo.isConnectedOrConnecting()) {
+            android.net.NetworkInfo wifi = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+            android.net.NetworkInfo mobile = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+
+            if ((mobile != null && mobile.isConnectedOrConnecting()) || (wifi != null && wifi.isConnectedOrConnecting()))
+                return true;
+            else return false;
+        } else
+            return false;
+    }
+
+// ------------------------------------------ No Internet Connection Ends here --------------------------------------------//
 
     public void jsonParse() {
 
@@ -132,7 +163,7 @@ public class BedMenuActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
-                Toast.makeText(BedMenuActivity.this, "No items available", Toast.LENGTH_LONG).show();
+                Toast.makeText(BedMenuActivity.this, "No items available", Toast.LENGTH_SHORT).show();
             }
 
         }) {

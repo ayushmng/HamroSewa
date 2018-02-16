@@ -44,8 +44,6 @@
             android:layout_alignBottom="@+id/Phoneno."
             android:layout_alignLeft="@+id/Address"
             android:layout_alignStart="@+id/Address"
-            android:layout_marginLeft="5dp"
-            android:layout_marginStart="5dp"
             android:text="Contact No.:"
             android:textColor="@color/NavyGreen"
             android:textSize="15dp" />
