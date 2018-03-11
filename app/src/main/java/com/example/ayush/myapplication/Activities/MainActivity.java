@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     //    private int CALL_PERMISSION_CODE = 1;
     //    PermissionManager permissionManager;
 
-    private static int SPLASH_TIME_OUT = 3000;
+    private static int SPLASH_TIME_OUT = 2300;
     ProgressBar progressbar;
 
     @Override

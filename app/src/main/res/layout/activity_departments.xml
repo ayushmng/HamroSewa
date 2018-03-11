@@ -1,81 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/swiperefresh"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.ayush.myapplication.HospitalDepartment.DepartmentsActivity">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/Textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/Grey"
-        android:textStyle="normal"
-        android:textSize="25dp"
-        android:padding="10dp"
-        android:text="Civil Service Hospital"/>
-
-    <TextView
-        android:id="@+id/SerialNo."
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/Textview"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="10dp"
-        android:paddingLeft="10dp"
-        android:paddingBottom="10dp"
-        android:text="S.No."
-        android:textColor="@color/NavyGreen"
-        android:textSize="20dp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/DepHead"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/SerialNo."
-        android:layout_alignBottom="@+id/SerialNo."
-        android:layout_centerHorizontal="true"
-        android:paddingRight="20dp"
-        android:paddingBottom="10dp"
-        android:text="Departments"
-        android:textColor="@color/NavyGreen"
-        android:textSize="20dp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/Amount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/DepHead"
-        android:layout_alignBottom="@+id/DepHead"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginEnd="13dp"
-        android:layout_marginRight="13dp"
-        android:paddingBottom="10dp"
-        android:paddingLeft="12dp"
-        android:paddingRight="12dp"
-        android:text="Amount"
-        android:textColor="@color/NavyGreen"
-        android:textSize="20dp"
-        android:textStyle="bold" />
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerInParent="true"
-        android:indeterminateTint="@color/NavyGreen" />
-
-    <ListView android:id="@+id/list_view"
-        android:layout_below="@+id/DepHead"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        tools:context="com.example.ayush.myapplication.HospitalDepartment.DepartmentsActivity">
 
+        <TextView
+            android:id="@+id/Textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:padding="10dp"
+            android:text="Civil Service Hospital"
+            android:textColor="@color/Grey"
+            android:textSize="25dp"
+            android:textStyle="normal" />
 
+        <TextView
+            android:id="@+id/SerialNo."
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Textview"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:text="S.No."
+            android:textColor="@color/NavyGreen"
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/DepHead"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/SerialNo."
+            android:layout_alignBottom="@+id/SerialNo."
+            android:layout_centerHorizontal="true"
+            android:paddingBottom="10dp"
+            android:paddingRight="20dp"
+            android:text="Departments"
+            android:textColor="@color/NavyGreen"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/Amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/DepHead"
+            android:layout_alignBottom="@+id/DepHead"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="13dp"
+            android:layout_marginRight="13dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:text="Amount"
+            android:textColor="@color/NavyGreen"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
+            android:indeterminateTint="@color/NavyGreen" />
+
+        <ListView
+            android:id="@+id/list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/DepHead" />
+
+    </RelativeLayout>
+
+</android.support.v4.widget.SwipeRefreshLayout>

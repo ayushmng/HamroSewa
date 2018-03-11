@@ -1,6 +1,10 @@
 
 package com.example.ayush.myapplication.HospitalDepartment;
 
+import android.annotation.SuppressLint;
+import android.graphics.Color;
+import android.os.Handler;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,8 +32,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
-public class DepartmentsActivity extends AppCompatActivity {
+public class DepartmentsActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
 
     TextView textView1, textView2, textView3;
     ProgressBar progressbar;
@@ -38,7 +43,9 @@ public class DepartmentsActivity extends AppCompatActivity {
     private List<UserInfo2> list = new ArrayList<UserInfo2>();
     private ListView listView;
     private HospitalDepartAdapter adapter;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
+  //  @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +53,7 @@ public class DepartmentsActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle("Available Services");
+
 
 //----------------------  For making top Hospital Name dynamic ---------------------//
 
@@ -67,10 +75,13 @@ public class DepartmentsActivity extends AppCompatActivity {
         textView2 = findViewById(R.id.ServiceName1);
         textView3 = findViewById(R.id.Amount1);
 
+        swipeRefreshLayout = findViewById(R.id.swiperefresh);
+        swipeRefreshLayout.setOnRefreshListener(this);
+        swipeRefreshLayout.setColorSchemeColors(Color.BLUE, Color.YELLOW, Color.GREEN);
+
         requestQueue = Volley.newRequestQueue(this);
 
         jsonParse();
-
     }
 
     public void jsonParse() {
@@ -132,7 +143,6 @@ public class DepartmentsActivity extends AppCompatActivity {
                 return params;
             }
         };
-
         requestQueue.add(request);
     }
 
@@ -174,4 +184,22 @@ public class DepartmentsActivity extends AppCompatActivity {
         }
     }//--------------------------------- Back Button Process Ends Here -----------------------------------------//
 
+    @Override
+    public void onRefresh() {
+        if (list.isEmpty()) {
+            jsonParse();
+        }
+        swipeRefreshLayout.setRefreshing(true);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                swipeRefreshLayout.setRefreshing(false);
+
+//                int min = 65;
+//                int max = 50;
+//
+//                Random random = new Random();
+        }
+    },3000);
+}
 }

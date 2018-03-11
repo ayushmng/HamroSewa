@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
@@ -36,14 +37,20 @@ import java.util.Map;
 
 
 public class BedMenuActivity extends AppCompatActivity {
+//public class BedMenuActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
 
     private RequestQueue mRequestQueue;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_bed_menu);
+
+//        swipeRefreshLayout = findViewById(R.id.swiperefresh);
+//        swipeRefreshLayout.setOnRefreshListener(BedMenuActivity.this);
+//        swipeRefreshLayout.setColorSchemeColors(Color.BLUE, Color.YELLOW, Color.GREEN);
 
         setTitle("Available Beds");
 
@@ -214,4 +221,10 @@ public class BedMenuActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+
+//    @Override
+//    public void onRefresh() {
+//
+//    }
 }
