@@ -58,7 +58,7 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ViewHold
 
         holder.textView.setText(hsname);
         // below in picasso placeholder is used for default image...
-        Picasso.with(mcontext).load(image).fit().centerInside().noFade().placeholder(R.mipmap.hlpnghnd).into(holder.imageView);
+        Picasso.with(mcontext).load(image).fit().centerInside().noFade().placeholder(R.drawable.ic_image_black_24dp).into(holder.imageView);
 //        Glide.with(mcontext).load(image).into(holder.imageView);
 
         holder.rootView.setOnClickListener(new View.OnClickListener() {
@@ -71,6 +71,7 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ViewHold
             }
         });
     }
+
 
     @Override
     public int getItemCount() {
@@ -97,6 +98,10 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ViewHold
             textView = itemView.findViewById(R.id.text_view_creator);
             imageView = itemView.findViewById(R.id.image_view);
             rootView = itemView.findViewById(R.id.rootView);
+
+            if (imageView == null){
+                imageView.setImageResource(R.drawable.ic_image_black_24dp);
+            }
         }
     }
 }

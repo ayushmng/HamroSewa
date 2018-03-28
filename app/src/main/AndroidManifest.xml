@@ -18,14 +18,15 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/appicon"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Fragmentation.FragmentActivity" />
         <activity
-            android:name=".Activities.BedMenuActivity" />
+            android:name=".Activities.BedMenuActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Activities.MainActivity"
             android:screenOrientation="portrait">

@@ -2,6 +2,7 @@ package com.example.ayush.myapplication.Fragmentation;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -10,6 +11,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +27,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.ayush.myapplication.Activities.BedMenuActivity;
 import com.example.ayush.myapplication.Activities.HospitalDetails;
 import com.example.ayush.myapplication.R;
 
@@ -37,6 +40,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+//public class FragmentRadioActivity extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 public class FragmentRadioActivity extends Fragment {
 
     public static final String EXTRA_NAME = "Name";
@@ -44,7 +48,6 @@ public class FragmentRadioActivity extends Fragment {
     public static final String EXTRA_CONTACT = "Phone";
     public static final String EXTRA_ADDRESS = "Address";
 
-   // ProgressBar progressbar;
     ProgressDialog progressDialog;
     RequestQueue requestQueue;
 
@@ -68,6 +71,10 @@ public class FragmentRadioActivity extends Fragment {
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER); // Progress Dialog Style Spinner
         progressDialog.show(); // Display Progress Dialog
 //        progressDialog.setCancelable(false);
+
+
+//        swipeRefreshLayout.setOnRefreshListener(this);
+//        swipeRefreshLayout.setColorSchemeColors(Color.BLUE, Color.YELLOW, Color.GREEN);
 
         requestQueue = Volley.newRequestQueue(getContext());
 
@@ -107,9 +114,10 @@ public class FragmentRadioActivity extends Fragment {
                         String Phone = patient.getString("orga_contactno");
                         String Address = patient.getString("orga_orgaddress1");
 
+                        adapter = new RadioAdapter(getActivity(), list); // fragment ma '.this' accept nagarera getActivity use gareko instead of RadioActivityICU.this
                         list.add(new UserInfo3(Hsname, Totbed, Vacbed, ImageUrl, Phone, Address));
+                        adapter.notifyDataSetChanged();
 
-                        adapter = new RadioAdapter(getActivity(), list); // fragment ma '.this' na line vayera getActivity use gareko instead of RadioActivityICU.this
                         listView.setAdapter(adapter);
 
                         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -137,7 +145,7 @@ public class FragmentRadioActivity extends Fragment {
                     e.printStackTrace();
                 }
 
-                adapter.notifyDataSetChanged();
+              //  adapter.notifyDataSetChanged();
             }
 
         }, new Response.ErrorListener() {
@@ -155,4 +163,5 @@ public class FragmentRadioActivity extends Fragment {
         };
         requestQueue.add(request);
     }
+
 }

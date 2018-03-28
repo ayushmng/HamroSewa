@@ -194,12 +194,7 @@ public class DepartmentsActivity extends AppCompatActivity implements SwipeRefre
             @Override
             public void run() {
                 swipeRefreshLayout.setRefreshing(false);
-
-//                int min = 65;
-//                int max = 50;
-//
-//                Random random = new Random();
-        }
+            }
     },3000);
 }
 }

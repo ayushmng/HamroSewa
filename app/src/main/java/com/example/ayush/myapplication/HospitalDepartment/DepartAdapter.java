@@ -43,7 +43,7 @@ public class DepartAdapter extends RecyclerView.Adapter<DepartAdapter.ViewHolder
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View itemView = LayoutInflater.from(mcontext).inflate(R.layout.hsdprtcardview, parent, false);
+        View itemView = LayoutInflater.from(mcontext).inflate(R.layout.cardview2, parent, false);
         return new ViewHolder(itemView);
     }
 
@@ -57,7 +57,7 @@ public class DepartAdapter extends RecyclerView.Adapter<DepartAdapter.ViewHolder
 
         holder.textView.setText(hsname);
         // below-> in picasso placeholder is used for default image...
-        Picasso.with(mcontext).load(image).fit().centerInside().noFade().placeholder(R.mipmap.hlpnghnd).into(holder.imageView);
+        Picasso.with(mcontext).load(image).fit().centerInside().noFade().placeholder(R.drawable.ic_image_black_24dp).into(holder.imageView);
 //        Glide.with(mcontext).load(image).into(holder.imageView);
 
         holder.rootView.setOnClickListener(new View.OnClickListener() {
@@ -96,6 +96,10 @@ public class DepartAdapter extends RecyclerView.Adapter<DepartAdapter.ViewHolder
             textView = itemView.findViewById(R.id.text_view_creator);
             imageView = itemView.findViewById(R.id.image_view);
             rootView = itemView.findViewById(R.id.rootView);
+
+            if(imageView == null){
+                imageView.setImageResource(R.drawable.ic_image_black_24dp);
+            }
         }
     }
 }

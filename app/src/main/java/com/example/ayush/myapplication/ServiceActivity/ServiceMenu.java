@@ -97,7 +97,7 @@ public class ServiceMenu extends AppCompatActivity implements ExampleAdapter.OnI
 
         swipeRefreshLayout = findViewById(R.id.swiperefresh);
         swipeRefreshLayout.setOnRefreshListener(this);
-        swipeRefreshLayout.setColorSchemeColors(Color.BLUE, Color.YELLOW, Color.GREEN);
+        swipeRefreshLayout.setColorSchemeColors(Color.BLUE, Color.RED, Color.GREEN);
 
 //  mRecyclerView.setLayoutManager(new LinearLayoutManager(this));  // It changes the dataitem into list view than that of grid view when we remove gridview 2lines from above ....
 
@@ -262,7 +262,7 @@ public class ServiceMenu extends AppCompatActivity implements ExampleAdapter.OnI
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item) {  // For Top back arrow button
         switch (item.getItemId()) {
             case android.R.id.home:
                 // API 5+ solution
@@ -274,14 +274,36 @@ public class ServiceMenu extends AppCompatActivity implements ExampleAdapter.OnI
         }
     }
 
-
-    //------------------------------------------ Searching System ---------------------------------------------------------------//
+//---------------------------------------------- Searching System ----------------------------------------------------------//
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
+
+//---------------------------------------  For Refreshing through menu item  ----------------------------------------------//
+        final MenuItem refresh = menu.findItem(R.id.menu_refresh);
+
+        refresh.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+
+                if (mExampleList.isEmpty()) {
+                    jsonParse();
+                }
+                swipeRefreshLayout.setRefreshing(true);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                },3000);
+                return true;
+            }
+        });
+
+//--------------------------------------------  Refresh Menu ends here  --------------------------------------------------//
 
         final MenuItem searchItem = menu.findItem(R.id.item_search);
         final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);

@@ -14,9 +14,11 @@
         android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
         android:paddingLeft="20dp"
-        android:text=""
+        android:paddingRight="20dp"
+        android:gravity="center"
+        android:text="1"
         android:textColor="#000"
-        android:textSize="17dp" />
+        android:textSize="16dp" />
 
     <TextView
         android:id="@+id/ServiceName1"
@@ -24,10 +26,15 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_toRightOf="@+id/Number1"
+        android:layout_toLeftOf="@+id/Amount1"
+        android:gravity="center"
         android:padding="10dp"
-        android:text=""
+        android:text="Blood Test and Urine Test and Sugar Checkup"
         android:textColor="#000"
-        android:textSize="17dp" />
+        android:textSize="16dp" />
 
     <TextView
         android:id="@+id/Amount1"
@@ -36,11 +43,14 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
+        android:layout_alignBaseline="@+id/Number1"
         android:layout_marginEnd="25dp"
         android:layout_marginRight="25dp"
-        android:padding="10dp"
-        android:text=""
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:gravity="center"
+        android:text="500"
         android:textColor="#000"
-        android:textSize="17dp" />
+        android:textSize="16dp" />
 
 </RelativeLayout>

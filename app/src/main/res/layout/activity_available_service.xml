@@ -13,7 +13,8 @@
         android:layout_centerHorizontal="true"
         android:textColor="@color/Grey"
         android:textStyle="normal"
-        android:textSize="25dp"
+        android:textSize="22dp"
+        android:gravity="center"
         android:padding="10dp"
         android:text="Civil Service Hospital"/>
 

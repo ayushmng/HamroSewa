@@ -16,10 +16,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
+            android:layout_marginLeft="15dp"
             android:padding="10dp"
-            android:text="Civil Service Hospital"
+            android:gravity="center"
+            android:text="Annapurna Neurological Institute and Allied Science"
             android:textColor="@color/Grey"
-            android:textSize="25dp"
+            android:textSize="22dp"
             android:textStyle="normal" />
 
         <TextView

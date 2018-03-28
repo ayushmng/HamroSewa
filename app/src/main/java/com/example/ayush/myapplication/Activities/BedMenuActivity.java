@@ -6,7 +6,10 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.annotation.RequiresApi;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -40,7 +43,8 @@ public class BedMenuActivity extends AppCompatActivity {
 //public class BedMenuActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
 
     private RequestQueue mRequestQueue;
-    private SwipeRefreshLayout swipeRefreshLayout;
+
+//    private SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +100,7 @@ public class BedMenuActivity extends AppCompatActivity {
         StringRequest request = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
 
+                    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
                     @Override
                     public void onResponse(String response) {
 
@@ -137,7 +142,7 @@ public class BedMenuActivity extends AppCompatActivity {
 //------------------------------------------------ Tint Colour ends here ---------------------------------------------------//
                                     rb.setText(jsonArray.getJSONObject(i).getString("dept_depname"));
                                     rb.setPadding(20,5,20,5);
-                                    rb.setTextSize(20);
+                                    rb.setTextSize(18);
                                     rg.addView(rb);
 
                                     if (i == 0)
@@ -156,6 +161,7 @@ public class BedMenuActivity extends AppCompatActivity {
                                     });
                                 }
                                 viewProductLayout.addView(rg);
+
                             }
 
                         } catch (JSONException e) {
@@ -183,6 +189,7 @@ public class BedMenuActivity extends AppCompatActivity {
         };
 
         mRequestQueue.add(request);
+
     }
 
     @Override
@@ -221,10 +228,4 @@ public class BedMenuActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
-
-//    @Override
-//    public void onRefresh() {
-//
-//    }
 }

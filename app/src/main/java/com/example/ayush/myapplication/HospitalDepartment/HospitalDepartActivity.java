@@ -3,9 +3,12 @@ package com.example.ayush.myapplication.HospitalDepartment;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Handler;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -45,7 +48,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class HospitalDepartActivity extends AppCompatActivity implements DepartAdapter.OnItemClickListener, SearchView.OnQueryTextListener {
+public class HospitalDepartActivity extends AppCompatActivity implements DepartAdapter.OnItemClickListener, SearchView.OnQueryTextListener, SwipeRefreshLayout.OnRefreshListener {
 
     public static final String EXTRA_CREATOR = "creatorName"; // tala ko data ma vayeko url ko object banako ko obj name haleko ho
     public static final String EXTRA_URL = "imageUrl";
@@ -54,6 +57,8 @@ public class HospitalDepartActivity extends AppCompatActivity implements DepartA
     private DepartAdapter mExampleAdapter;
     private RequestQueue mRequestQueue;
     private GridLayoutManager gridLayoutManager;
+    private SwipeRefreshLayout swipeRefreshLayout;
+
 
 //    private ArrayList<DepartInfo> mExampleList;
 
@@ -67,7 +72,7 @@ public class HospitalDepartActivity extends AppCompatActivity implements DepartA
         setContentView(R.layout.activity_hospital_depart);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setTitle("Services");
+        setTitle("Departments");
 
         if (!isConnected(HospitalDepartActivity.this)) {
             Intent intent = new Intent(HospitalDepartActivity.this, NoInternetConnectionActivity.class);
@@ -88,6 +93,10 @@ public class HospitalDepartActivity extends AppCompatActivity implements DepartA
         mRecyclerView = findViewById(R.id.recycler_view);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(gridLayoutManager);
+
+        swipeRefreshLayout = findViewById(R.id.swiperefresh);
+        swipeRefreshLayout.setOnRefreshListener(this);
+        swipeRefreshLayout.setColorSchemeColors(Color.BLUE, Color.RED, Color.GREEN);
 
 //  mRecyclerView.setLayoutManager(new LinearLayoutManager(this));  // It changes the dataitem into list view than that of grid view when we remove gridview 2lines from above ....
 
@@ -273,6 +282,25 @@ public class HospitalDepartActivity extends AppCompatActivity implements DepartA
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
 
+        final MenuItem refresh = menu.findItem(R.id.menu_refresh);
+        refresh.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+
+                if (mExampleList.isEmpty()) {
+                    jsonParse();
+                }
+                swipeRefreshLayout.setRefreshing(true);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                },3000);
+                return true;
+            }
+        });
+
         final MenuItem searchItem = menu.findItem(R.id.item_search);
         final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
 
@@ -325,6 +353,19 @@ public class HospitalDepartActivity extends AppCompatActivity implements DepartA
             }
         }
         return filteredModelList;
+    }
+    @Override
+    public void onRefresh() {
+        if (mExampleList.isEmpty()) {
+            jsonParse();
+        }
+        swipeRefreshLayout.setRefreshing(true);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        },3000);
     }
 }
 //---------------------------  Search stops from here  ----------------------------------------//

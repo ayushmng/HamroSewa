@@ -12,13 +12,14 @@ public class AboutHelpingHandActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_about_helping_hand);
 
         setTitle("About Us");
 
         TextView txtview = findViewById(R.id.Textview);
-        txtview.setText(getIntent().getExtras().getString("ExtraValue"));
+        txtview.setText(getIntent().getExtras().getString("ExtraValue")); // This ExtraValue is sent from Tab3 java class.
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
